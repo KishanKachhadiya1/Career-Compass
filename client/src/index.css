@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Nunito", sans-serif;
+}
+
+/* color variables starts */
+:root {
+    --primary: #758173;
+    --secondary: #8FA38A;
+    --dark: #1F241F;
+    --white: #FFFFFF;
+    --darkGrey: #EDEBEC;
+    --lightGrey: #FAFAFA;
+    --placeHolderGrey: #9A9A9A;
+}
+/* color variables ends */
+
+/* common css class starts  */
+a, a:hover, a:focus {
+    text-decoration: none;
+}
+/* common css class ends  */

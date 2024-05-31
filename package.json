@@ -1,0 +1,22 @@
+{
+  "name": "careercompass",
+  "version": "1.0.0",
+  "description": "Career compass is a job portal designed to connect job seekers with employers to get thier desired jobs.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "Group 8",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.1",
+    "validator": "^13.12.0"
+  }
+}

@@ -1,0 +1,123 @@
+/* .bannerBg {
+    background-image: url('../images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: calc(100vh - 89.95px);
+    position: relative;
+}
+.bannerBg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+}
+.bannerContent {
+    position: relative;
+    z-index: 10;
+} */
+/* Banner css starts */
+.bannerContent {
+  max-width: 767px;
+  width: 100%;
+  padding: 100px 0;
+  margin: auto;
+}
+.bannerContent h1 {
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+.bannerContent h2 {
+  font-size: 46px;
+  margin-bottom: 20px;
+}
+.bannerContent p {
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+/* Banner css ends */
+
+/* Job categories css starts */
+.jobCategory .title,
+.latestJobs .title {
+  margin: 0 auto 70px;
+}
+.jobCategory .btn,
+.latestJobs .btn {
+  margin: 50px auto 0;
+  display: block;
+  width: fit-content;
+}
+.jobCatMain {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  margin-bottom: 30px;
+}
+.jobCatMain .jobCatCard {
+  padding: 30px;
+  flex-direction: column;
+}
+.jobCatMain .jobCatCard img {
+  margin-bottom: 20px;
+  width: 70px;
+  height: auto;
+  border-radius: 10px;
+}
+.jobCatMain .jobCatCard h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.jobCatMain .jobCatCard p {
+  font-weight: 400;
+}
+/* Job categories css ends */
+
+/* Latest jobs css starts */
+.latestJobsMain {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+.latestJobCard {
+  padding: 30px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.01);
+}
+.latestJobCard .imgContent img {
+  width: 70px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+.latestJobCard h3 {
+  font-weight: 700;
+  font-size: 16px;
+}
+.latestJobCard .jobContent {
+  margin-top: 20px;
+}
+.latestJobCard .jobContent h4 .icon {
+  margin-right: 10px;
+  width: 20px;
+  display: inline-block;
+}
+.latestJobCard .jobContent h4 .role {
+  font-weight: 400;
+}
+.latestJobCard .jobContent h4 {
+  margin-bottom: 10px;
+}
+.latestJobCard .jobContent .jobSkills {
+  margin-top: 10px;
+}
+.latestJobCard .jobContent .jobSkills span {
+  padding: 8px 20px;
+  font-weight: 400;
+  margin-right: 15px;
+  margin-top: 15px;
+  display: inline-block;
+}
+/* Latest jobs css ends */

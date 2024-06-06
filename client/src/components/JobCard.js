@@ -1,4 +1,5 @@
 import React from "react";
+// https://www.freepik.com/
 import jobs from "../images/jobs.jpg";
 
 const JobCard = () => {

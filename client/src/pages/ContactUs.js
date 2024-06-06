@@ -3,6 +3,7 @@ import "../styles/contactus.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+// https://www.freepik.com/free-vector/customer-support-flat-design-illustration_12983846.htm#fromView=search&page=1&position=34&uuid=7c23b83f-ea56-44cc-a3
 import contactImg from '../images/contactus.jpg';
 
 const ContactUs = () => {

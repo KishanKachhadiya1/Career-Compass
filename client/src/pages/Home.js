@@ -3,6 +3,7 @@ import "../styles/home.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+// https://www.freepik.com/free-vector/gradient-coding-logo-template_11817415.htm#query=web%20development%20logo&position=11&from_view=keyword&track=ais_user&uuid=ee8f
 import categoryLogo from "../images/categoryLogo.jpg";
 import JobCard from "../components/JobCard";
 

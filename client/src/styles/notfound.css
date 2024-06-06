@@ -1,0 +1,16 @@
+.notFound {
+    flex-direction: column;
+}
+.notFound h3 {
+    font-size: 200px;
+    margin-bottom: 30px;
+    font-weight: 900;
+}
+.notFound p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+.notFound p svg {
+    margin-right: 10px;
+}

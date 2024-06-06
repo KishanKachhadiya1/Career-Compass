@@ -1,0 +1,15 @@
+.companySection .title {
+    margin: 0 auto 70px;
+}
+.companyCard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+.companyCard .latestJobCard {
+    border: 1px solid #ededed;
+}
+.companyCard .jobContent h4 {
+    margin-top: 10px;
+    margin-bottom: 0;
+}

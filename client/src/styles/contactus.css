@@ -1,0 +1,26 @@
+.contactUsSection .title {
+    margin: 0 auto 70px;
+}
+.contactMain {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-gap: 20px;
+}
+.contactMain .contactImg img {
+    width: 100%;
+}
+.contactForm {
+    padding: 40px;
+}
+.contactForm .formGroup {
+    margin-bottom: 10px;
+}
+.contactForm .formGroup label {
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.contactForm .formGroup input,
+.contactForm .formGroup textarea {
+    background-color: #fff;
+    resize: none;
+}

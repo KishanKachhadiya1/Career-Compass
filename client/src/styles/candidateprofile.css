@@ -1,0 +1,54 @@
+@import url(../index.css);
+
+.candidateProfile .title {
+    margin: 0 auto 70px;
+}
+.profileForm {
+    padding: 40px;
+}
+.profileForm .formControl {
+    background-color: #fff;
+}
+.profileForm .formGroup label {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+.profileForm .profileGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+.profileForm .formGroup .radioGroup {
+    margin-right: 20px;
+}
+.profileForm .formGroup .radioGroup .radioInput {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--primary);
+}
+.profileForm .formGroup .radioGroup .radioLabel {
+    margin-bottom: 0;
+    margin-left: 5px;
+    color: var(--dark);
+}
+.profileForm .formGroup .formControl {
+    margin-bottom: 0;
+}
+.select__control {
+    border: unset !important;
+    padding: 6px;
+    border-radius: 8px !important;
+}
+.basic-multi-select + div,
+.basic-single-select + div {
+    display: none;
+}
+.profileForm .btn {
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .profileForm .profileGrid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

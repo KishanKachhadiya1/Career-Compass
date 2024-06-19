@@ -9,6 +9,9 @@ import ContactUs from './pages/ContactUs';
 import AboutUs from './pages/AboutUs';
 import Companies from './pages/Companies';
 import ForgotPassword from './pages/ForgotPassword';
+import CandidateProfile from './pages/Candidate/CandidateProfile';
+import CandidateDashboard from './pages/Candidate/CandidateDashboard';
+import CandidateAppliedJobs from './pages/Candidate/CandidateAppliedJobs';
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
       <Route path='/companies' element={<Companies />} />
       <Route path='/contact-us' element={<ContactUs />} />
       <Route path='/about-us' element={<AboutUs />} />
+      <Route path='/candidate-profile' element={<CandidateProfile />} />
+      <Route path='/candidate-dashboard' element={<CandidateDashboard />} />
+      <Route path='/candidate-applied-jobs' element={<CandidateAppliedJobs />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
     </>

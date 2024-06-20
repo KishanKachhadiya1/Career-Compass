@@ -1,0 +1,43 @@
+@import url(../index.css);
+
+.candList .title {
+    margin: 0 auto 70px;
+}
+.textDanger {
+    color: #ff5858;
+}
+.candDataTable tbody tr td img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.candDataTable table {
+    border-color: #eeeeee;
+}
+.candDataTable thead tr {
+    background-color: var(--lightGrey);
+}
+.candDataTable tr th {
+    padding: 10px 5px;
+    color: var(--primary);
+}
+.candDataTable tr td {
+    padding: 10px 5px;
+    text-align: center;
+    color: var(--placeHolderGrey);
+}
+.editIcon {
+    margin-right: 15px;
+}
+.candSearch span {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #eeeeee;
+    background-color: var(--lightGrey);
+    margin-right: 10px;
+}
+.candSearch .formControl {
+    border: 1px solid #eeeeee;
+    background-color: var(--lightGrey);
+}

@@ -12,6 +12,9 @@ import ForgotPassword from './pages/ForgotPassword';
 import CandidateProfile from './pages/Candidate/CandidateProfile';
 import CandidateDashboard from './pages/Candidate/CandidateDashboard';
 import CandidateAppliedJobs from './pages/Candidate/CandidateAppliedJobs';
+import CandidateList from './pages/Admin/CandidateList';
+import AdminDashboard from './pages/Admin/AdminDashboard';
+import EmployerList from './pages/Admin/EmployerList';
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
       <Route path='/candidate-profile' element={<CandidateProfile />} />
       <Route path='/candidate-dashboard' element={<CandidateDashboard />} />
       <Route path='/candidate-applied-jobs' element={<CandidateAppliedJobs />} />
+      <Route path='/admin-dashboard' element={<AdminDashboard />} />
+      <Route path='/employer-list' element={<EmployerList />} />
+      <Route path='/candidate-list' element={<CandidateList />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
     </>

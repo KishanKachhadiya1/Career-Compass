@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+// MaritalStatus.js
+
+import React from "react";
 import Select from "react-select";
 
 const options = [
@@ -9,27 +11,20 @@ const options = [
   { value: "separated", label: "Separated" },
 ];
 
-const MaritalStatus = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const handleChange = (selected) => {
-    setSelectedOption(selected);
+const MaritalStatus = ({ selectedStatus, onChange }) => {
+  const handleChange = (selectedOption) => {
+    onChange(selectedOption);
   };
 
   return (
-    <div>
-      <Select
-        name="maritalStatus"
-        options={options}
-        className="basic-single-select"
-        classNamePrefix="select"
-        value={selectedOption}
-        onChange={handleChange}
-      />
-      {selectedOption && (
-        <div className="selected-status">Selected: {selectedOption.label}</div>
-      )}
-    </div>
+    <Select
+      name="maritalStatus"
+      options={options}
+      className="basic-single-select"
+      classNamePrefix="select"
+      value={options.find(option => option.value === selectedStatus)} // Set selected value
+      onChange={handleChange}
+    />
   );
 };
 

@@ -28,27 +28,35 @@ const CandidateProfile = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+
+  const handleMaritalStatusChange = (selectedOption) => {
+    setFormData({ ...formData, maritalStatus: selectedOption.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/candidateProfile", {
+      const response = await fetch("http://localhost:8000/api/v1/auth/candidate-profile", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-
+  
       if (!response.ok) {
-        throw new Error("Failed to save profile");
+        const errorMessage = await response.text();
+        throw new Error(`Failed to save profile. Server responded with ${response.status}: ${errorMessage}`);
       }
-
+  
       const result = await response.json();
       console.log("Profile saved successfully:", result);
     } catch (error) {
       console.error("Error saving profile:", error);
     }
   };
+  
+  
 
   return (
     <>
@@ -155,12 +163,12 @@ const CandidateProfile = () => {
                 />
               </div>
               <div className="formGroup">
-                <label className="textPrimary dBlock">Marital Status</label>
-                <MaritalStatus 
-                  selectedStatus={formData.maritalStatus} 
-                  onChange={(maritalStatus) => setFormData({ ...formData, maritalStatus })}
-                />
-              </div>
+              <label className="textPrimary dBlock">Marital Status</label>
+              <MaritalStatus
+                selectedStatus={formData.maritalStatus}
+                onChange={handleMaritalStatusChange} // Pass handler to update marital status
+              />
+            </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Country</label>
                 <input

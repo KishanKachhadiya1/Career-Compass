@@ -8,6 +8,122 @@ const CandidateAppliedJobs = () => {
       <CandidateHeader />
       <section className="candAppliedJobs container">
         <h2 className="title textPrimary">Applied Jobs</h2>
+        <div className="searchJobs">
+          <div class="formGroup dFlex alignCenter">
+            <span className="dFlex alignCenter justifyCenter dBlock">
+              <i className="fa-solid fa-magnifying-glass textPlaceHolder searchIcon"></i>
+            </span>
+            <input
+              type="text"
+              className="formControl"
+              placeholder="Search applied jobs..."
+            />
+          </div>
+        </div>
+        <div className="appliedJobsMain">
+          <div className="appliedJobsCard">
+            <div className="dFlex alignCenter">
+              <i className="fa-solid fa-briefcase textPlaceHolder icon"></i>
+              <h3 className="textPrimary jobTitle">Web Designer</h3>
+            </div>
+            <div className="dFlex alignCenter mt-10">
+              <i className="fa-regular fa-clock textPlaceHolder icon"></i>
+              <h4 className="textPlaceHolder jobTitle">
+                <span className="textPlaceHolder">Applied On:</span>26th June,
+                2024
+              </h4>
+            </div>
+            <div className="dFlex alignCenter mt-10">
+              <i className="fa-solid fa-dollar-sign textPlaceHolder icon"></i>
+              <h4 className="jobTitle textPlaceHolder">60,000</h4>
+            </div>
+          </div>
+          <div className="appliedJobsCard">
+            <div className="dFlex alignCenter">
+              <i className="fa-solid fa-briefcase textPlaceHolder icon"></i>
+              <h3 className="textPrimary jobTitle">Web Designer</h3>
+            </div>
+            <div className="dFlex alignCenter mt-10">
+              <i className="fa-regular fa-clock textPlaceHolder icon"></i>
+              <h4 className="textPlaceHolder jobTitle">
+                <span className="textPlaceHolder">Applied On:</span>26th June,
+                2024
+              </h4>
+            </div>
+            <div className="dFlex alignCenter mt-10">
+              <i className="fa-solid fa-dollar-sign textPlaceHolder icon"></i>
+              <h4 className="jobTitle textPlaceHolder">60,000</h4>
+            </div>
+          </div>
+          <div className="appliedJobsCard">
+            <div className="dFlex alignCenter">
+              <i className="fa-solid fa-briefcase textPlaceHolder icon"></i>
+              <h3 className="textPrimary jobTitle">Web Designer</h3>
+            </div>
+            <div className="dFlex alignCenter mt-10">
+              <i className="fa-regular fa-clock textPlaceHolder icon"></i>
+              <h4 className="textPlaceHolder jobTitle">
+                <span className="textPlaceHolder">Applied On:</span>26th June,
+                2024
+              </h4>
+            </div>
+            <div className="dFlex alignCenter mt-10">
+              <i className="fa-solid fa-dollar-sign textPlaceHolder icon"></i>
+              <h4 className="jobTitle textPlaceHolder">60,000</h4>
+            </div>
+          </div>
+          <div className="appliedJobsCard">
+            <div className="dFlex alignCenter">
+              <i className="fa-solid fa-briefcase textPlaceHolder icon"></i>
+              <h3 className="textPrimary jobTitle">Web Designer</h3>
+            </div>
+            <div className="dFlex alignCenter mt-10">
+              <i className="fa-regular fa-clock textPlaceHolder icon"></i>
+              <h4 className="textPlaceHolder jobTitle">
+                <span className="textPlaceHolder">Applied On:</span>26th June,
+                2024
+              </h4>
+            </div>
+            <div className="dFlex alignCenter mt-10">
+              <i className="fa-solid fa-dollar-sign textPlaceHolder icon"></i>
+              <h4 className="jobTitle textPlaceHolder">60,000</h4>
+            </div>
+          </div>
+          <div className="appliedJobsCard">
+            <div className="dFlex alignCenter">
+              <i className="fa-solid fa-briefcase textPlaceHolder icon"></i>
+              <h3 className="textPrimary jobTitle">Web Designer</h3>
+            </div>
+            <div className="dFlex alignCenter mt-10">
+              <i className="fa-regular fa-clock textPlaceHolder icon"></i>
+              <h4 className="textPlaceHolder jobTitle">
+                <span className="textPlaceHolder">Applied On:</span>26th June,
+                2024
+              </h4>
+            </div>
+            <div className="dFlex alignCenter mt-10">
+              <i className="fa-solid fa-dollar-sign textPlaceHolder icon"></i>
+              <h4 className="jobTitle textPlaceHolder">60,000</h4>
+            </div>
+          </div>
+          <div className="appliedJobsCard">
+            <div className="dFlex alignCenter">
+              <i className="fa-solid fa-briefcase textPlaceHolder icon"></i>
+              <h3 className="textPrimary jobTitle">Web Designer</h3>
+            </div>
+            <div className="dFlex alignCenter mt-10">
+              <i className="fa-regular fa-clock textPlaceHolder icon"></i>
+              <h4 className="textPlaceHolder jobTitle">
+                <span className="textPlaceHolder">Applied On:</span>26th June,
+                2024
+              </h4>
+            </div>
+            <div className="dFlex alignCenter mt-10">
+              <i className="fa-solid fa-dollar-sign textPlaceHolder icon"></i>
+              <h4 className="jobTitle textPlaceHolder">60,000</h4>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );

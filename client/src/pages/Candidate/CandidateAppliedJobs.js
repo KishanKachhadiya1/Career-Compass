@@ -9,14 +9,14 @@ const CandidateAppliedJobs = () => {
       <section className="candAppliedJobs container">
         <h2 className="title textPrimary">Applied Jobs</h2>
         <div className="searchJobs">
-          <div class="formGroup dFlex alignCenter">
-            <span className="dFlex alignCenter justifyCenter dBlock">
-              <i className="fa-solid fa-magnifying-glass textPlaceHolder searchIcon"></i>
+          <div className="candSearch dFlex">
+            <span className="rounded-6 dFlex justifyCenter alignCenter">
+              <i class="fa-solid fa-magnifying-glass textPrimary"></i>
             </span>
             <input
               type="text"
+              placeholder="Search..."
               className="formControl"
-              placeholder="Search applied jobs..."
             />
           </div>
         </div>

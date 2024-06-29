@@ -6,7 +6,7 @@
 .candAppliedJobs .appliedJobsMain {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2cls0px;
+  grid-gap: 20px;
   margin-top: 20px;
 }
 .candAppliedJobs .appliedJobsMain .appliedJobsCard {

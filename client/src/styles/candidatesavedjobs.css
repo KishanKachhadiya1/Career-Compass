@@ -1,0 +1,10 @@
+@import url("../index.css");
+
+.candSavedJobs .title {
+  margin: 0 auto 70px;
+}
+.candSavedJobs .createdAt {
+  padding: 5px 10px;
+  background-color: var(--lightGrey);
+  border-radius: 8px;
+}

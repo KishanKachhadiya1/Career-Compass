@@ -1,9 +1,6 @@
-// MaritalStatus.js
+import React, { useState } from 'react'
 
-import React from "react";
-import Select from "react-select";
-
-const options = [
+const maritalStatusOptions = [
   { value: "single", label: "Single" },
   { value: "married", label: "Married" },
   { value: "divorced", label: "Divorced" },
@@ -11,21 +8,36 @@ const options = [
   { value: "separated", label: "Separated" },
 ];
 
-const MaritalStatus = ({ selectedStatus, onChange }) => {
-  const handleChange = (selectedOption) => {
-    onChange(selectedOption);
+const MaritalStatus = () => {
+  const [selectedStatus, setSelectedStatus] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const selectStatus = (value) => {
+    setSelectedStatus(value);
+    setDropdownOpen(false);
   };
-
   return (
-    <Select
-      name="maritalStatus"
-      options={options}
-      className="basic-single-select"
-      classNamePrefix="select"
-      value={options.find(option => option.value === selectedStatus)} // Set selected value
-      onChange={handleChange}
-    />
-  );
-};
+    <>
+      <div className="dropdown">
+      <button onClick={() => setDropdownOpen(!dropdownOpen)}>
+        {selectedStatus ? maritalStatusOptions.find(option => option.value === selectedStatus).label : 'Select Marital Status'}
+      </button>
+      {dropdownOpen && (
+        <div className="dropdown-menu">
+          {maritalStatusOptions.map((status) => (
+            <div
+              key={status.value}
+              className={`dropdown-item ${selectedStatus === status.value ? 'selected' : ''}`}
+              onClick={() => selectStatus(status.value)}
+            >
+              {status.label}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+    </>
+  )
+}
 
-export default MaritalStatus;
+export default MaritalStatus

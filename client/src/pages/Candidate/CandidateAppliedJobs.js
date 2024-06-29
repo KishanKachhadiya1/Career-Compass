@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
+import CandidateHeader from "../../components/CandidateHeader";
+import "../../styles/candidateappliedjobs.css";
 
 const CandidateAppliedJobs = () => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <>
+      <CandidateHeader />
+      <section className="candAppliedJobs container">
+        <h2 className="title textPrimary">Applied Jobs</h2>
+      </section>
+    </>
+  );
+};
 
-export default CandidateAppliedJobs
+export default CandidateAppliedJobs;

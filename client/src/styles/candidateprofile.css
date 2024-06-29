@@ -1,54 +1,88 @@
 @import url(../index.css);
 
 .candidateProfile .title {
-    margin: 0 auto 70px;
+  margin: 0 auto 70px;
 }
 .profileForm {
-    padding: 40px;
+  padding: 40px;
 }
 .profileForm .formControl {
-    background-color: #fff;
+  background-color: #fff;
 }
 .profileForm .formGroup label {
-    margin-bottom: 10px;
-    font-weight: 500;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 .profileForm .profileGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
 }
 .profileForm .formGroup .radioGroup {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 .profileForm .formGroup .radioGroup .radioInput {
-    width: 17px;
-    height: 17px;
-    accent-color: var(--primary);
+  width: 17px;
+  height: 17px;
+  accent-color: var(--primary);
 }
 .profileForm .formGroup .radioGroup .radioLabel {
-    margin-bottom: 0;
-    margin-left: 5px;
-    color: var(--dark);
+  margin-bottom: 0;
+  margin-left: 5px;
+  color: var(--dark);
 }
 .profileForm .formGroup .formControl {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 .select__control {
-    border: unset !important;
-    padding: 6px;
-    border-radius: 8px !important;
+  border: unset !important;
+  padding: 6px;
+  border-radius: 8px !important;
 }
 .basic-multi-select + div,
 .basic-single-select + div {
-    display: none;
+  display: none;
 }
 .profileForm .btn {
-    margin-top: 40px;
+  margin-top: 40px;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.dropdown button {
+  padding: 13px 15px;
+  width: 100%;
+  background: #fff;
+  border: unset;
+  border-radius: 8px;
+  text-align: left;
+  color: var(--placeHolderGrey);
+}
+.dropdown-menu {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.01);
+  padding: 10px;
+  z-index: 1;
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.dropdown-item {
+  padding: 8px;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.dropdown-item.selected {
+  background-color: #fafafa;
 }
 
 @media (max-width: 768px) {
-    .profileForm .profileGrid {
-        grid-template-columns: repeat(1, 1fr);
-    }
+  .profileForm .profileGrid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import CandidateHeader from "../../components/CandidateHeader";
 import "../../styles/candidateprofile.css";
-import SkillsDropdown from "../../components/SkillsDropdown";
-import LanguageDropdown from "../../components/LanguageDropdown";
+import Skills from "../../components/Skills";
+import Languages from "../../components/Languages";
 import MaritalStatus from "../../components/MaritalStatus";
 
 const CandidateProfile = () => {
@@ -13,14 +13,11 @@ const CandidateProfile = () => {
     phoneNumber: "",
     birthDate: "",
     gender: "",
-    skills: [],
-    languages: [],
-    maritalStatus: "",
     country: "",
     state: "",
     city: "",
     experience: "",
-    address: ""
+    address: "",
   });
 
   const handleChange = (e) => {
@@ -28,35 +25,33 @@ const CandidateProfile = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-
-  const handleMaritalStatusChange = (selectedOption) => {
-    setFormData({ ...formData, maritalStatus: selectedOption.value });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/api/v1/auth/candidate-profile", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-  
+      const response = await fetch(
+        "http://localhost:8000/api/v1/auth/candidate-profile",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
       if (!response.ok) {
         const errorMessage = await response.text();
-        throw new Error(`Failed to save profile. Server responded with ${response.status}: ${errorMessage}`);
+        throw new Error(
+          `Failed to save profile. Server responded with ${response.status}: ${errorMessage}`
+        );
       }
-  
+
       const result = await response.json();
       console.log("Profile saved successfully:", result);
     } catch (error) {
       console.error("Error saving profile:", error);
     }
   };
-  
-  
 
   return (
     <>
@@ -125,24 +120,24 @@ const CandidateProfile = () => {
                 <label className="textPrimary dBlock">Gender</label>
                 <div className="dFlex alignCenter">
                   <div className="radioGroup dFlex alignCenter">
-                    <input 
-                      type="radio" 
-                      className="radioInput" 
-                      name="gender" 
-                      value="Male" 
-                      checked={formData.gender === "Male"} 
-                      onChange={handleChange} 
+                    <input
+                      type="radio"
+                      className="radioInput"
+                      name="gender"
+                      value="Male"
+                      checked={formData.gender === "Male"}
+                      onChange={handleChange}
                     />
                     <label className="radioLabel">Male</label>
                   </div>
                   <div className="radioGroup dFlex alignCenter">
-                    <input 
-                      type="radio" 
-                      className="radioInput" 
-                      name="gender" 
-                      value="Female" 
-                      checked={formData.gender === "Female"} 
-                      onChange={handleChange} 
+                    <input
+                      type="radio"
+                      className="radioInput"
+                      name="gender"
+                      value="Female"
+                      checked={formData.gender === "Female"}
+                      onChange={handleChange}
                     />
                     <label className="radioLabel">Female</label>
                   </div>
@@ -150,25 +145,16 @@ const CandidateProfile = () => {
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Skills</label>
-                <SkillsDropdown 
-                  selectedSkills={formData.skills} 
-                  onChange={(skills) => setFormData({ ...formData, skills })}
-                />
+                <Skills />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Languages</label>
-                <LanguageDropdown 
-                  selectedLanguages={formData.languages} 
-                  onChange={(languages) => setFormData({ ...formData, languages })}
-                />
+                <Languages />
               </div>
               <div className="formGroup">
-              <label className="textPrimary dBlock">Marital Status</label>
-              <MaritalStatus
-                selectedStatus={formData.maritalStatus}
-                onChange={handleMaritalStatusChange} // Pass handler to update marital status
-              />
-            </div>
+                <label className="textPrimary dBlock">Marital Status</label>
+                <MaritalStatus />
+              </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Country</label>
                 <input
@@ -225,7 +211,9 @@ const CandidateProfile = () => {
                 />
               </div>
             </div>
-            <button type="submit" className="btn bgPrimary textWhite">Save</button>
+            <button type="submit" className="btn bgPrimary textWhite">
+              Save
+            </button>
           </form>
         </div>
       </section>

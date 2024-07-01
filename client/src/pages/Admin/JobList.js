@@ -1,17 +1,17 @@
 import React from "react";
-import "../../styles/candidatesavedjobs.css";
-import CandidateHeader from "../../components/CandidateHeader";
+import AdminHeader from "../../components/AdminHeader";
+import "../../styles/joblist.css";
 // https://unsplash.com/photos/a-man-wearing-glasses-and-a-black-shirt-iEEBWgY_6lA
 import candidateProfile from "../../images/candidateProfile.jpg";
 
-const savedJobs = [
+const jobList = [
   {
     id: 1,
     jobTitle: "Web Designer",
     logo: candidateProfile,
     name: "Kishan Kachhadiya",
     email: "kishan@gmail.com",
-    createdOn: "19th May, 2024"
+    createdOn: "19th May, 2024",
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const savedJobs = [
     logo: candidateProfile,
     name: "Kirtan Chaklasiya",
     email: "kirtan@gmail.com",
-    createdOn: "24th June, 2024"
+    createdOn: "24th June, 2024",
   },
   {
     id: 3,
@@ -27,23 +27,23 @@ const savedJobs = [
     logo: candidateProfile,
     name: "Jainil Patel",
     email: "jaimil@gmail.com",
-    createdOn: "2nd April, 2024"
+    createdOn: "2nd April, 2024",
   },
 ];
 
-const CandidateSavedJobs = () => {
+const JobList = () => {
   return (
     <>
-      <CandidateHeader />
-      <section className="candSavedJobs container">
-        <h2 className="title textPrimary">Saved Jobs</h2>
+      <AdminHeader />
+      <section className="container candList jobList">
+        <h2 className="title textPrimary">Job List</h2>
         <div className="candSearch dFlex">
           <span className="rounded-6 dFlex justifyCenter alignCenter">
             <i class="fa-solid fa-magnifying-glass textPrimary"></i>
           </span>
-          <input type="text" placeholder="Search saved jobs..." className="formControl" />
+          <input type="text" placeholder="Search..." className="formControl" />
         </div>
-        <div className="savedJobsTable candDataTable">
+        <div className="candDataTable">
           <table
             border="1"
             cellPadding="10"
@@ -60,16 +60,24 @@ const CandidateSavedJobs = () => {
               </tr>
             </thead>
             <tbody>
-              {savedJobs.map((savedJob) => (
-                <tr key={savedJob.id}>
-                  <td>{savedJob.jobTitle}</td>
+              {jobList.map((jobs) => (
+                <tr key={jobs.id}>
+                  <td>{jobs.jobTitle}</td>
                   <td>
-                    <img src={savedJob.logo} alt={`${savedJob.name} logo`} />
+                    <img src={jobs.logo} alt={`${jobs.name} logo`} />
                   </td>
-                  <td><span className="dBlock textPrimary fwBold">{savedJob.name}</span>{savedJob.email}</td>
-                  <td><span className="createdOn">{savedJob.createdOn}</span></td>
                   <td>
-                    <i className="fa-solid fa-bookmark textPrimary"></i>
+                    <span className="dBlock textPrimary fwBold">
+                      {jobs.name}
+                    </span>
+                    {jobs.email}
+                  </td>
+                  <td>
+                    <span className="createdOn">{jobs.createdOn}</span>
+                  </td>
+                  <td>
+                    <i class="fa-solid fa-pen-to-square textPrimary editIcon"></i>
+                    <i class="fa-solid fa-trash-can textDanger"></i>
                   </td>
                 </tr>
               ))}
@@ -81,4 +89,4 @@ const CandidateSavedJobs = () => {
   );
 };
 
-export default CandidateSavedJobs;
+export default JobList;

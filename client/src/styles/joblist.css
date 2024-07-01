@@ -1,9 +1,9 @@
 @import url("../index.css");
 
-.candSavedJobs .title {
+.jobList .title {
   margin: 0 auto 70px;
 }
-.candSavedJobs .createdOn {
+.jobList .createdOn {
   padding: 5px 10px;
   background-color: var(--lightGrey);
   border-radius: 8px;

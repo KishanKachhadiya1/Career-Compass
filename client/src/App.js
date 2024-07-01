@@ -16,6 +16,7 @@ import CandidateSavedJobs from "./pages/Candidate/CandidateSavedJobs";
 import CandidateList from "./pages/Admin/CandidateList";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import EmployerList from "./pages/Admin/EmployerList";
+import JobList from "./pages/Admin/JobList";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/companies" element={<Companies />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/about-us" element={<AboutUs />} />
+        {/* candidate routes  */}
         <Route path="/candidate-profile" element={<CandidateProfile />} />
         <Route path="/candidate-dashboard" element={<CandidateDashboard />} />
         <Route
@@ -37,9 +39,11 @@ function App() {
           element={<CandidateAppliedJobs />}
         />
         <Route path="/candidate-saved-jobs" element={<CandidateSavedJobs />} />
+        {/* admin routes  */}
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/employer-list" element={<EmployerList />} />
         <Route path="/candidate-list" element={<CandidateList />} />
+        <Route path="/job-list" element={<JobList />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

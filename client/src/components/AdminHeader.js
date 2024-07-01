@@ -26,6 +26,11 @@ const EmployerHeader = () => {
               Candidate
             </Link>
           </li>
+          <li className="menu-list">
+            <Link to="/job-list" className="link">
+              Jobs
+            </Link>
+          </li>
         </ul>
         <Link to="/login" className="btn">
           Logout

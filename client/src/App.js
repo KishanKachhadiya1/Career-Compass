@@ -21,6 +21,8 @@ import CandidateJobList from "./pages/Employer/CandidateJobList";
 import EmployerJobs from "./pages/Employer/EmployerJobs";
 import EmployerProfile from "./pages/Employer/EmployerProfile";
 import JobList from "./pages/Admin/JobList";
+import EmployerAddJobs from "./pages/Employer/EmployerAddJobs";
+import EmployerEditJobs from "./pages/Employer/EmployerEditJobs";
 
 function App() {
   return (
@@ -67,6 +69,8 @@ function App() {
           element={<EmployerProfile />}
         />
         <Route path="/employer/employer-jobs" element={<EmployerJobs />} />
+        <Route path="/employer/employer-jobs/add" element={<EmployerAddJobs />} />
+        <Route path="/employer/employer-jobs/edit" element={<EmployerEditJobs />} />
         <Route
           path="/employer/candidate-job-list"
           element={<CandidateJobList />}

@@ -16,7 +16,8 @@ const Skills = () => {
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggleSkill = (value) => {
+  const toggleSkill = (event, value) => {
+    event.preventDefault();
     setSelectedSkills((prevSkills) =>
       prevSkills.includes(value)
         ? prevSkills.filter((skill) => skill !== value)
@@ -24,11 +25,22 @@ const Skills = () => {
     );
   };
 
+  const toggleDropdown = (event) => {
+    event.preventDefault();
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const selectedSkillsLabels = selectedSkills
+    .map(
+      (skill) => skillsOptions.find((option) => option.value === skill).label
+    )
+    .join(", ");
+
   return (
     <>
       <div className="dropdown">
-        <button onClick={() => setDropdownOpen(!dropdownOpen)}>
-          Select Skills
+        <button onClick={toggleDropdown}>
+          {selectedSkills.length > 0 ? selectedSkillsLabels : "Select Skills"}
         </button>
         {dropdownOpen && (
           <div className="dropdown-menu">
@@ -38,7 +50,7 @@ const Skills = () => {
                 className={`dropdown-item ${
                   selectedSkills.includes(skill.value) ? "selected" : ""
                 }`}
-                onClick={() => toggleSkill(skill.value)}
+                onClick={(event) => toggleSkill(event, skill.value)}
               >
                 {skill.label}
               </div>

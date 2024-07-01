@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const languagesOptions = [
   { value: "english", label: "English" },
@@ -23,28 +23,43 @@ const Languages = () => {
     );
   };
 
+  const selectedLanguagesLabels = selectedLanguages
+    .map(
+      (language) =>
+        languagesOptions.find((option) => option.value === language).label
+    )
+    .join(", ");
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
   return (
     <>
       <div className="dropdown">
-      <button onClick={() => setDropdownOpen(!dropdownOpen)}>
-        Select Languages
-      </button>
-      {dropdownOpen && (
-        <div className="dropdown-menu">
-          {languagesOptions.map((language) => (
-            <div
-              key={language.value}
-              className={`dropdown-item ${selectedLanguages.includes(language.value) ? 'selected' : ''}`}
-              onClick={() => toggleLanguage(language.value)}
-            >
-              {language.label}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+        <button onClick={toggleDropdown}>
+          {selectedLanguages.length > 0
+            ? selectedLanguagesLabels
+            : "Select Languages"}
+        </button>
+        {dropdownOpen && (
+          <div className="dropdown-menu">
+            {languagesOptions.map((language) => (
+              <div
+                key={language.value}
+                className={`dropdown-item ${
+                  selectedLanguages.includes(language.value) ? "selected" : ""
+                }`}
+                onClick={() => toggleLanguage(language.value)}
+              >
+                {language.label}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Languages
+export default Languages;

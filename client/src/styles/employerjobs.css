@@ -3,3 +3,15 @@
 .employerJobs .title {
   margin: 0 auto 70px;
 }
+.employerJobs .addJobButton {
+  margin-bottom: 30px;
+  width: fit-content;
+  margin-left: 30px;
+  text-wrap: nowrap;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.ml-20 {
+  margin-left: 20px;
+}

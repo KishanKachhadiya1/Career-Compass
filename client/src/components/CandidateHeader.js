@@ -13,22 +13,22 @@ const CandidateHeader = () => {
           </div>
           <ul className="dFlex menu-group">
             <li className="menu-list">
-              <Link to="/candidate-dashboard" className="link">
+              <Link to="/candidate/candidate-dashboard" className="link">
                 Dashboard
               </Link>
             </li>
             <li className="menu-list">
-              <Link to="/candidate-profile" className="link">
+              <Link to="/candidate/candidate-profile" className="link">
                 Profile
               </Link>
             </li>
             <li className="menu-list">
-              <Link to="/candidate-applied-jobs" className="link">
+              <Link to="/candidate/candidate-applied-jobs" className="link">
                 Applied Jobs
               </Link>
             </li>
             <li className="menu-list">
-              <Link to="/candidate-saved-jobs" className="link">
+              <Link to="/candidate/candidate-saved-jobs" className="link">
                 Saved Jobs
               </Link>
             </li>

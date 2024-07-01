@@ -32,18 +32,27 @@ function App() {
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/about-us" element={<AboutUs />} />
         {/* candidate routes  */}
-        <Route path="/candidate-profile" element={<CandidateProfile />} />
-        <Route path="/candidate-dashboard" element={<CandidateDashboard />} />
         <Route
-          path="/candidate-applied-jobs"
+          path="/candidate/candidate-profile"
+          element={<CandidateProfile />}
+        />
+        <Route
+          path="/candidate/candidate-dashboard"
+          element={<CandidateDashboard />}
+        />
+        <Route
+          path="/candidate/candidate-applied-jobs"
           element={<CandidateAppliedJobs />}
         />
-        <Route path="/candidate-saved-jobs" element={<CandidateSavedJobs />} />
+        <Route
+          path="/candidate/candidate-saved-jobs"
+          element={<CandidateSavedJobs />}
+        />
         {/* admin routes  */}
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/employer-list" element={<EmployerList />} />
-        <Route path="/candidate-list" element={<CandidateList />} />
-        <Route path="/job-list" element={<JobList />} />
+        <Route path="/admin/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/employer-list" element={<EmployerList />} />
+        <Route path="/admin/candidate-list" element={<CandidateList />} />
+        <Route path="/admin/job-list" element={<JobList />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

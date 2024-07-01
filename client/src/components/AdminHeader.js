@@ -12,22 +12,22 @@ const EmployerHeader = () => {
         </div>
         <ul className="dFlex menu-group">
           <li className="menu-list">
-            <Link to="/admin-dashboard" className="link">
+            <Link to="/admin/admin-dashboard" className="link">
               Dashboard
             </Link>
           </li>
           <li className="menu-list">
-            <Link to="/employer-list" className="link">
+            <Link to="/admin/employer-list" className="link">
               Employer
             </Link>
           </li>
           <li className="menu-list">
-            <Link to="/candidate-list" className="link">
+            <Link to="/admin/candidate-list" className="link">
               Candidate
             </Link>
           </li>
           <li className="menu-list">
-            <Link to="/job-list" className="link">
+            <Link to="/admin/job-list" className="link">
               Jobs
             </Link>
           </li>

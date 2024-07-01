@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const skillsOptions = [
   { value: "programming", label: "Programming" },
@@ -26,26 +26,28 @@ const Skills = () => {
 
   return (
     <>
-       <div className="dropdown">
-      <button onClick={() => setDropdownOpen(!dropdownOpen)}>
-        Select Skills
-      </button>
-      {dropdownOpen && (
-        <div className="dropdown-menu">
-          {skillsOptions.map((skill) => (
-            <div
-              key={skill.value}
-              className={`dropdown-item ${selectedSkills.includes(skill.value) ? 'selected' : ''}`}
-              onClick={() => toggleSkill(skill.value)}
-            >
-              {skill.label}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+      <div className="dropdown">
+        <button onClick={() => setDropdownOpen(!dropdownOpen)}>
+          Select Skills
+        </button>
+        {dropdownOpen && (
+          <div className="dropdown-menu">
+            {skillsOptions.map((skill) => (
+              <div
+                key={skill.value}
+                className={`dropdown-item ${
+                  selectedSkills.includes(skill.value) ? "selected" : ""
+                }`}
+                onClick={() => toggleSkill(skill.value)}
+              >
+                {skill.label}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Skills
+export default Skills;

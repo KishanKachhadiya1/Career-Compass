@@ -3,3 +3,49 @@
 .employerProfile .title {
   margin: 0 auto 70px;
 }
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.dropdown button {
+  padding: 13px 15px;
+  width: 100%;
+  background: #fff;
+  border: unset;
+  border-radius: 8px;
+  text-align: left;
+  color: var(--placeHolderGrey);
+}
+.dropdown-menu {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.01);
+  padding: 10px;
+  z-index: 1;
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.dropdown-item {
+  padding: 8px;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.dropdown-item.selected {
+  background-color: #fafafa;
+}
+textarea {
+  padding: 15px;
+  outline: unset;
+  border: unset;
+  border-radius: 8px;
+  background-color: var(--white);
+  width: 100%;
+  resize: none;
+}
+.fullWidth {
+  grid-column: 1/-1;
+}

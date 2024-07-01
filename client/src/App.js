@@ -16,6 +16,10 @@ import CandidateSavedJobs from "./pages/Candidate/CandidateSavedJobs";
 import CandidateList from "./pages/Admin/CandidateList";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import EmployerList from "./pages/Admin/EmployerList";
+import EmployerDashboard from "./pages/Employer/EmployerDashboard";
+import CandidateJobList from "./pages/Employer/CandidateJobList";
+import EmployerJobs from "./pages/Employer/EmployerJobs";
+import EmployerProfile from "./pages/Employer/EmployerProfile";
 import JobList from "./pages/Admin/JobList";
 
 function App() {
@@ -53,6 +57,20 @@ function App() {
         <Route path="/admin/employer-list" element={<EmployerList />} />
         <Route path="/admin/candidate-list" element={<CandidateList />} />
         <Route path="/admin/job-list" element={<JobList />} />
+        {/* employer routes  */}
+        <Route
+          path="/employer/employer-dashboard"
+          element={<EmployerDashboard />}
+        />
+        <Route
+          path="/employer/employer-profile"
+          element={<EmployerProfile />}
+        />
+        <Route path="/employer/employer-jobs" element={<EmployerJobs />} />
+        <Route
+          path="/employer/candidate-job-list"
+          element={<CandidateJobList />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

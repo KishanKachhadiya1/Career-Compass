@@ -3,3 +3,16 @@
 .candJobList .title {
   margin: 0 auto 70px;
 }
+.candJobList .createdOn {
+  padding: 5px 10px;
+  background-color: var(--lightGrey);
+  border-radius: 8px;
+}
+.candJobList .status {
+  padding: 5px 10px;
+  background-color: #ebfae9;
+  border-radius: 8px;
+}
+.candJobList table tr td {
+  padding: 15px 5px;
+}

@@ -11,13 +11,12 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(morgan('dev')); // Use 'dev' for development logging
+app.use(morgan('dev'));
 
-// Routes
-app.use('/api/v1/auth', authRoutes); // Prefix all routes in authRoutes with '/api/v1/auth'
+app.use('/api/v1/auth', authRoutes);
 
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
-    console.log(`Server running on ${PORT}`);
+  console.log(`Server running on ${PORT}`);
 });

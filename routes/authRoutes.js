@@ -1,13 +1,9 @@
 import express from 'express';
-import { registerController } from '../controllers/authController.js';
-import { saveCandidateProfile } from '../controllers/CandidateProfileController.js';
+import { register, login } from '../controllers/authController.js';
 
 const router = express.Router();
 
-// Route for user registration
-router.post('/register', registerController);
-
-// Route for saving candidate profile
-router.post('/candidate-profile', saveCandidateProfile);
+router.post('/register', register);
+router.post('/login', login);
 
 export default router;

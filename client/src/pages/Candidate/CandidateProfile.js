@@ -1,3 +1,4 @@
+// CandidateProfile.js
 import React, { useState } from "react";
 import CandidateHeader from "../../components/CandidateHeader";
 import "../../styles/candidateprofile.css";
@@ -18,6 +19,9 @@ const CandidateProfile = () => {
     city: "",
     experience: "",
     address: "",
+    maritalStatus: "", // Ensure this field is included
+    skills: [], // Ensure this field is included
+    languages: [], // Ensure this field is included
   });
 
   const handleChange = (e) => {
@@ -145,15 +149,15 @@ const CandidateProfile = () => {
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Skills</label>
-                <Skills />
+                <Skills setFormData={setFormData} />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Languages</label>
-                <Languages />
+                <Languages setFormData={setFormData} />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Marital Status</label>
-                <MaritalStatus />
+                <MaritalStatus setFormData={setFormData} />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Country</label>

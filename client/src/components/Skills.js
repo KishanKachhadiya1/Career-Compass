@@ -1,3 +1,4 @@
+// Skills.js
 import React, { useState } from "react";
 
 const skillsOptions = [
@@ -12,17 +13,24 @@ const skillsOptions = [
   { value: "communication-skill", label: "Communication skill" },
 ];
 
-const Skills = () => {
+const Skills = ({ setFormData }) => {
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleSkill = (event, value) => {
     event.preventDefault();
-    setSelectedSkills((prevSkills) =>
-      prevSkills.includes(value)
+    setSelectedSkills((prevSkills) => {
+      const newSkills = prevSkills.includes(value)
         ? prevSkills.filter((skill) => skill !== value)
-        : [...prevSkills, value]
-    );
+        : [...prevSkills, value];
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        skills: newSkills,
+      }));
+
+      return newSkills;
+    });
   };
 
   const toggleDropdown = (event) => {

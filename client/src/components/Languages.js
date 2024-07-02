@@ -1,3 +1,4 @@
+// Languages.js
 import React, { useState } from "react";
 
 const languagesOptions = [
@@ -11,16 +12,23 @@ const languagesOptions = [
   { value: "japanese", label: "Japanese" },
 ];
 
-const Languages = () => {
+const Languages = ({ setFormData }) => {
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleLanguage = (value) => {
-    setSelectedLanguages((prevLanguages) =>
-      prevLanguages.includes(value)
+    setSelectedLanguages((prevLanguages) => {
+      const newLanguages = prevLanguages.includes(value)
         ? prevLanguages.filter((language) => language !== value)
-        : [...prevLanguages, value]
-    );
+        : [...prevLanguages, value];
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        languages: newLanguages,
+      }));
+
+      return newLanguages;
+    });
   };
 
   const selectedLanguagesLabels = selectedLanguages

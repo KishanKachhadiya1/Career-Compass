@@ -1,3 +1,4 @@
+// MaritalStatus.js
 import React, { useState } from "react";
 
 const maritalStatusOptions = [
@@ -8,13 +9,17 @@ const maritalStatusOptions = [
   { value: "separated", label: "Separated" },
 ];
 
-const MaritalStatus = () => {
+const MaritalStatus = ({ setFormData }) => {
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const selectStatus = (value) => {
     setSelectedStatus(value);
     setDropdownOpen(false);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      maritalStatus: value,
+    }));
   };
 
   return (

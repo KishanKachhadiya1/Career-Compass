@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../images/logo.png"
-
+import logo from "../images/logo.png";
+// https://unsplash.com/photos/a-man-wearing-glasses-and-a-black-shirt-iEEBWgY_6lA
+import candidateProfile from "../images/candidateProfile.jpg";
 
 const CandidateHeader = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const userName = "Candidate Name";
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
   return (
     <header className="bgDarkGrey">
       <div className="container">
@@ -33,9 +40,22 @@ const CandidateHeader = () => {
               </Link>
             </li>
           </ul>
-          <Link to="/login" className="btn">
-            Logout
-          </Link>
+          <div className="dropdown commonDropdown">
+            <button onClick={toggleDropdown} className="dropbtn">
+              <img src={candidateProfile} alt="logo" />
+              {userName}
+            </button>
+            {dropdownOpen && (
+              <div className="dropdown-content">
+                <Link to="" className="dropdown-item">
+                  Edit Profile
+                </Link>
+                <Link to="/login" className="dropdown-item">
+                  Logout
+                </Link>
+              </div>
+            )}
+          </div>
         </nav>
       </div>
     </header>

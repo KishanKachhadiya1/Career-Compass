@@ -240,6 +240,45 @@ footer .footerMain .footerList .menu-list .link:hover,
 footer .footerMain .footerList .menu-list span:hover {
   color: var(--primary);
 }
+.commonDropdown {
+  width: auto !important;
+  position: relative;
+}
+.commonDropdown .dropbtn {
+  background: transparent;
+  color: var(--dark);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.commonDropdown .dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+}
+.commonDropdown .dropdown-content .dropdown-item {
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+.commonDropdown .dropdown-content .dropdown-item:hover {
+  background-color: var(--lightGrey);
+}
+.commonDropdown .dropbtn img {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 /* Footer css ends */
 
 /* Media query starts  */

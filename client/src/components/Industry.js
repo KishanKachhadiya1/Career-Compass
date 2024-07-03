@@ -1,56 +1,42 @@
+// components/Industry.js
 import React, { useState } from "react";
 
 const industryOptions = [
-  { value: "informationtechnology", label: "Information Technology" },
-  { value: "engineering", label: "Engineering" },
-  { value: "teacher", label: "Teacher" },
-  { value: "financeandbanking", label: "Finance and Banking" },
-  { value: "constructions", label: "Constructions" },
-  { value: "business", label: "Business" },
+  { value: "IT", label: "Information Technology" },
+  { value: "Finance", label: "Finance" },
+  { value: "Healthcare", label: "Healthcare" },
+  { value: "Education", label: "Education" },
+  { value: "Manufacturing", label: "Manufacturing" },
+  { value: "Retail", label: "Retail" },
+  { value: "Hospitality", label: "Hospitality" },
+  { value: "Transportation", label: "Transportation" },
 ];
 
-const Industry = () => {
-  const [selectedIndustry, setSelectedIndustry] = useState(null);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+const Industry = ({ setFormData }) => {
+  const [selectedIndustry, setSelectedIndustry] = useState("");
 
-  const selectIndustry = (event, value) => {
-    event.preventDefault();
+  const handleChange = (event) => {
+    const { value } = event.target;
     setSelectedIndustry(value);
-    setDropdownOpen(false);
-  };
-
-  const toggleDropdown = (event) => {
-    event.preventDefault();
-    setDropdownOpen(!dropdownOpen);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      industry: value,
+    }));
   };
 
   return (
-    <>
-      <div className="dropdown">
-        <button onClick={toggleDropdown}>
-          {selectedIndustry
-            ? industryOptions.find(
-                (option) => option.value === selectedIndustry
-              ).label
-            : "Select Industry"}
-        </button>
-        {dropdownOpen && (
-          <div className="dropdown-menu">
-            {industryOptions.map((industry) => (
-              <div
-                key={industry.value}
-                className={`dropdown-item ${
-                  selectedIndustry === industry.value ? "selected" : ""
-                }`}
-                onClick={(event) => selectIndustry(event, industry.value)}
-              >
-                {industry.label}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </>
+    <select
+      className="formControl"
+      value={selectedIndustry}
+      onChange={handleChange}
+    >
+      <option value="">Select Industry *</option>
+      {industryOptions.map((industry) => (
+        <option key={industry.value} value={industry.value}>
+          {industry.label}
+        </option>
+      ))}
+    </select>
   );
 };
 

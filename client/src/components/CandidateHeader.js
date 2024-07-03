@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 // https://unsplash.com/photos/a-man-wearing-glasses-and-a-black-shirt-iEEBWgY_6lA
@@ -6,7 +6,15 @@ import candidateProfile from "../images/candidateProfile.jpg";
 
 const CandidateHeader = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const userName = "Candidate Name";
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setUserName(`${user.firstName} ${user.lastName}`);
+    }
+  }, []);
+
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };

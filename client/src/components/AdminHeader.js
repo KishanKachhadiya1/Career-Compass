@@ -6,7 +6,7 @@ import candidateProfile from "../images/candidateProfile.jpg";
 
 const AdminHeader = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const userName = "Admin Name";
+  const userName = "Admin";
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };

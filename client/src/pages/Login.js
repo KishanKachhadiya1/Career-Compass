@@ -38,6 +38,8 @@ const Login = () => {
       body: JSON.stringify({ ...formData, userType }),
     });
     if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem("user", JSON.stringify(data));
       navigate(`/${userType}/${userType}-dashboard`);
     } else {
       alert("Invalid credentials");

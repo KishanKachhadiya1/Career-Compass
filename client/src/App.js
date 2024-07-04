@@ -1,3 +1,4 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -25,6 +26,7 @@ import EmployerAddJobs from "./pages/Employer/EmployerAddJobs";
 import EmployerEditJobs from "./pages/Employer/EmployerEditJobs";
 import CandidateEditProfile from "./pages/Candidate/CandidateEditProfile";
 import EmployerEditProfile from "./pages/Employer/EmployerEditProfile";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -42,54 +44,133 @@ function App() {
         {/* candidate routes  */}
         <Route
           path="/candidate/candidate-profile"
-          element={<CandidateProfile />}
+          element={
+            <ProtectedRoute>
+              <CandidateProfile />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/candidate/candidate-edit-profile"
-          element={<CandidateEditProfile />}
+          element={
+            <ProtectedRoute>
+              <CandidateEditProfile />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/candidate/candidate-dashboard"
-          element={<CandidateDashboard />}
+          element={
+            <ProtectedRoute>
+              <CandidateDashboard />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/candidate/candidate-applied-jobs"
-          element={<CandidateAppliedJobs />}
+          element={
+            <ProtectedRoute>
+              <CandidateAppliedJobs />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/candidate/candidate-saved-jobs"
-          element={<CandidateSavedJobs />}
+          element={
+            <ProtectedRoute>
+              <CandidateSavedJobs />
+            </ProtectedRoute>
+          }
         />
         {/* admin routes  */}
-        <Route path="/admin/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/admin/employer-list" element={<EmployerList />} />
-        <Route path="/admin/candidate-list" element={<CandidateList />} />
-        <Route path="/admin/job-list" element={<JobList />} />
+        <Route
+          path="/admin/admin-dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/employer-list"
+          element={
+            <ProtectedRoute>
+              <EmployerList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/candidate-list"
+          element={
+            <ProtectedRoute>
+              <CandidateList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/job-list"
+          element={
+            <ProtectedRoute>
+              <JobList />
+            </ProtectedRoute>
+          }
+        />
         {/* employer routes  */}
         <Route
           path="/employer/employer-dashboard"
-          element={<EmployerDashboard />}
+          element={
+            <ProtectedRoute>
+              <EmployerDashboard />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/employer/employer-profile"
-          element={<EmployerProfile />}
+          element={
+            <ProtectedRoute>
+              <EmployerProfile />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/employer/employer-edit-profile"
-          element={<EmployerEditProfile />}
+          element={
+            <ProtectedRoute>
+              <EmployerEditProfile />
+            </ProtectedRoute>
+          }
         />
-        <Route path="/employer/employer-jobs" element={<EmployerJobs />} />
+        <Route
+          path="/employer/employer-jobs"
+          element={
+            <ProtectedRoute>
+              <EmployerJobs />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/employer/employer-jobs/add"
-          element={<EmployerAddJobs />}
+          element={
+            <ProtectedRoute>
+              <EmployerAddJobs />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/employer/employer-jobs/edit"
-          element={<EmployerEditJobs />}
+          element={
+            <ProtectedRoute>
+              <EmployerEditJobs />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/employer/candidate-job-list"
-          element={<CandidateJobList />}
+          element={
+            <ProtectedRoute>
+              <CandidateJobList />
+            </ProtectedRoute>
+          }
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

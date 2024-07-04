@@ -18,9 +18,9 @@ const CandidateProfile = () => {
     city: "",
     experience: "",
     address: "",
-    maritalStatus: "", // Ensure this field is included
-    skills: [], // Ensure this field is included
-    languages: [], // Ensure this field is included
+    maritalStatus: "",
+    skills: [],
+    languages: [],
   });
 
   const handleChange = (e) => {
@@ -73,6 +73,7 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="First name *"
                   className="formControl"
+                  required  
                 />
               </div>
               <div className="formGroup">
@@ -84,6 +85,7 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="Last name *"
                   className="formControl"
+                  required  
                 />
               </div>
               <div className="formGroup">
@@ -95,6 +97,7 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="E-mail *"
                   className="formControl"
+                  required  
                 />
               </div>
               <div className="formGroup">
@@ -106,6 +109,7 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="Phone number *"
                   className="formControl"
+                  required  
                 />
               </div>
               <div className="formGroup">
@@ -117,6 +121,7 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="Birth date *"
                   className="formControl"
+                  required  
                 />
               </div>
               <div className="formGroup">
@@ -130,6 +135,7 @@ const CandidateProfile = () => {
                       value="Male"
                       checked={formData.gender === "Male"}
                       onChange={handleChange}
+                      required  
                     />
                     <label className="radioLabel">Male</label>
                   </div>
@@ -141,6 +147,7 @@ const CandidateProfile = () => {
                       value="Female"
                       checked={formData.gender === "Female"}
                       onChange={handleChange}
+                      required  
                     />
                     <label className="radioLabel">Female</label>
                   </div>
@@ -148,15 +155,15 @@ const CandidateProfile = () => {
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Skills</label>
-                <Skills setFormData={setFormData} />
+                <Skills setFormData={setFormData} required />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Languages</label>
-                <Languages setFormData={setFormData} />
+                <Languages setFormData={setFormData} required />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Marital Status</label>
-                <MaritalStatus setFormData={setFormData} />
+                <MaritalStatus setFormData={setFormData} required />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Country</label>
@@ -167,6 +174,7 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="Country *"
                   className="formControl"
+                  required  
                 />
               </div>
               <div className="formGroup">
@@ -178,6 +186,7 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="State *"
                   className="formControl"
+                  required 
                 />
               </div>
               <div className="formGroup">
@@ -189,6 +198,7 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="City *"
                   className="formControl"
+                  required  
                 />
               </div>
               <div className="formGroup">
@@ -200,6 +210,7 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="Experience (ex. 1 year) *"
                   className="formControl"
+                  required  
                 />
               </div>
               <div className="formGroup">
@@ -211,6 +222,7 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="Address *"
                   className="formControl"
+                  required  
                 />
               </div>
             </div>

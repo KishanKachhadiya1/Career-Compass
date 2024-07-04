@@ -57,7 +57,10 @@ const CandidateHeader = () => {
             </button>
             {dropdownOpen && (
               <div className="dropdown-content">
-                <Link to="" className="dropdown-item">
+                <Link
+                  to="/candidate/candidate-edit-profile"
+                  className="dropdown-item"
+                >
                   Edit Profile
                 </Link>
                 <button onClick={logout} className="dropdown-item logoutButton">

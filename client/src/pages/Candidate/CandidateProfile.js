@@ -1,4 +1,3 @@
-// CandidateProfile.js
 import React, { useState } from "react";
 import CandidateHeader from "../../components/CandidateHeader";
 import "../../styles/candidateprofile.css";

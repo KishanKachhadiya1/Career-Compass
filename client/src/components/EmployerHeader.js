@@ -56,7 +56,7 @@ const EmployerHeader = () => {
             </button>
             {dropdownOpen && (
               <div className="dropdown-content">
-                <Link to="" className="dropdown-item">
+                <Link to="/employer/employer-edit-profile" className="dropdown-item">
                   Edit Profile
                 </Link>
                <button onClick={logout} className="dropdown-item logoutButton">

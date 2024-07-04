@@ -28,6 +28,7 @@ const Login = () => {
       formData.password === "admin123" &&
       userType === "admin"
     ) {
+      localStorage.setItem("user", JSON.stringify({ email: formData.email, userType }));
       navigate("/admin/admin-dashboard");
       return;
     }
@@ -39,7 +40,7 @@ const Login = () => {
     });
     if (response.ok) {
       const data = await response.json();
-      localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("user", JSON.stringify({ ...data, userType }));
       navigate(`/${userType}/${userType}-dashboard`);
     } else {
       alert("Invalid credentials");

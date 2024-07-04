@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 // https://unsplash.com/photos/a-man-wearing-glasses-and-a-black-shirt-iEEBWgY_6lA
 import candidateProfile from "../images/candidateProfile.jpg";
+import { logout } from "../utils/utils";
+
 
 const CandidateHeader = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -58,9 +60,9 @@ const CandidateHeader = () => {
                 <Link to="" className="dropdown-item">
                   Edit Profile
                 </Link>
-                <Link to="/login" className="dropdown-item">
+                <button onClick={logout} className="dropdown-item logoutButton">
                   Logout
-                </Link>
+                </button>
               </div>
             )}
           </div>

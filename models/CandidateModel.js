@@ -18,6 +18,6 @@ const candidateProfileSchema = new mongoose.Schema({
   address: { type: String, required: true },
 }, { timestamps: true });
 
-const CandidateProfile = mongoose.model('CandidateProfile', candidateProfileSchema);
+const CandidateProfile = mongoose.model('CandidatesProfile', candidateProfileSchema);
 
 export default CandidateProfile;

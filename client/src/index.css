@@ -4,7 +4,9 @@
   box-sizing: border-box;
 }
 
-body, ::placeholder, * {
+body,
+::placeholder,
+* {
   font-family: "Nunito", sans-serif;
 }
 
@@ -134,8 +136,8 @@ section {
 .container {
   margin-right: auto;
   margin-left: auto;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
   width: 100%;
 }
 .title {
@@ -146,7 +148,7 @@ section {
   width: fit-content;
 }
 .title::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 2px;
@@ -182,22 +184,22 @@ header .menu-group .menu-list .link {
   position: relative;
 }
 header .menu-group .menu-list .link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -6px;
-    width: 0;
-    height: 2px;
-    transition: all 0.3s ease;
-    background-color: var(--primary);
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  transition: all 0.3s ease;
+  background-color: var(--primary);
 }
 header .menu-group .menu-list .link:hover::after {
-    width: 100%;
+  width: 100%;
 }
 header .logo img {
-    max-width: 250px;
-    width: 100%;
+  max-width: 250px;
+  width: 100%;
 }
 /* Header css ends */
 
@@ -261,7 +263,7 @@ footer .footerMain .footerList .menu-list span:hover {
   padding: 10px 0;
   background-color: var(--white);
   border-radius: 8px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.03);
   display: flex;
   flex-direction: column;
 }
@@ -285,6 +287,21 @@ footer .footerMain .footerList .menu-list span:hover {
   border-radius: 0 !important;
 }
 /* Footer css ends */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+}
+.menu {
+  display: flex;
+  align-items: center;
+}
+.menu .menu-group {
+  margin-right: 40px;
+}
 
 /* Media query starts  */
 @media (min-width: 576px) {
@@ -310,6 +327,72 @@ footer .footerMain .footerList .menu-list span:hover {
 @media (min-width: 1400px) {
   .container {
     max-width: 1320px;
+  }
+}
+@media (max-width: 1199px) {
+  .jobCatMain {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 991px) {
+  .jobCatMain, .latestJobsMain, footer .footerMain {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .menu-group {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .menu.open .menu-group {
+    display: flex;
+    margin-top: 50px;
+  }
+  .menu.open {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: var(--white);
+    z-index: 998;
+    max-width: calc(100% - 20px);
+    width: 400px;
+    padding: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.03);
+    height: 100%;
+  }
+  .menu.open .menu-list {
+    padding: 10px 0;
+  }
+  .menu.open .btn {
+    margin-top: 20px;
+  }
+  .menu-toggle {
+    display: block;
+    z-index: 999;
+  }
+  .menu {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .menu.open {
+    display: flex;
+  }
+  .login-btn {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}
+@media (max-width: 575px) {
+  .jobCatMain, .latestJobsMain, footer .footerMain {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .bannerContent h2 {
+    font-size: 30px;
+  }
+  .title {
+    font-size: 22px;
   }
 }
 /* Media query ends */

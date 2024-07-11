@@ -28,7 +28,7 @@ const JobDetails = () => {
       <section className="container currentJob">
         <h2 className="title textPrimary">Job Details</h2>
         <div className="latestJobCard bgWhite rounded-6">
-          <div className="dFlex alignCenter">
+          <div className="dFlex alignCenter justifyBetween cardDflex">
             <div>
               <div className="imgContent dFlex alignCenter">
                 <img src={jobs} alt="Company Logo" />

@@ -335,7 +335,12 @@ footer .footerMain .footerList .menu-list span:hover {
   }
 }
 @media (max-width: 991px) {
-  .jobCatMain, .latestJobsMain, footer .footerMain {
+  .jobCatMain,
+  .latestJobsMain,
+  footer .footerMain,
+  .companyCard,
+  .stepMain,
+  .latestJobsMain.jobCard {
     grid-template-columns: repeat(2, 1fr);
   }
   .menu-group {
@@ -385,7 +390,12 @@ footer .footerMain .footerList .menu-list span:hover {
   }
 }
 @media (max-width: 575px) {
-  .jobCatMain, .latestJobsMain, footer .footerMain {
+  .jobCatMain,
+  .latestJobsMain,
+  footer .footerMain,
+  .companyCard,
+  .stepMain,
+  .latestJobsMain.jobCard {
     grid-template-columns: repeat(1, 1fr);
   }
   .bannerContent h2 {
@@ -393,6 +403,10 @@ footer .footerMain .footerList .menu-list span:hover {
   }
   .title {
     font-size: 22px;
+  }
+  .menu.open {
+    width: 100%;
+    max-width: 100%;
   }
 }
 /* Media query ends */

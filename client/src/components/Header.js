@@ -14,7 +14,9 @@ const Header = () => {
       <div className="container">
         <nav className="dFlex justifyBetween alignCenter">
           <div className="logo dFlex alignCenter">
-            <img src={logo} alt="Career Compass" />
+            <Link to="/">
+              <img src={logo} alt="Career Compass" />
+            </Link>
           </div>
           <div className={`menu ${isMenuOpen ? "open" : ""}`}>
             <ul className="dFlex menu-group">

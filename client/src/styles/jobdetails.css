@@ -1,56 +1,72 @@
 .currentJob {
-    border-bottom: 1px solid #edebec;
+  border-bottom: 1px solid #edebec;
 }
 .currentJob .title {
-    margin: 0 auto 70px;
+  margin: 0 auto 70px;
 }
 .currentJob .latestJobCard {
-    margin: 0 auto;
-    border: 1px solid #edebec;
-    width: fit-content;
+  margin: 0 auto;
+  border: 1px solid #edebec;
+  width: 100%;
+  max-width: 520px;
 }
 .currentJob .applyBtn {
-    margin-left: 50px;
+  margin-left: 50px;
 }
 .jobDesc {
-    padding-top: 0;
+  padding-top: 0;
 }
 .jobDesc .jobContent {
-    padding-bottom: 25px;
+  padding-bottom: 25px;
 }
 .jobDesc .jobContent .jobHeading {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 .companyTitle {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 .jobDesc .jobContent ul {
-    list-style-type: circle;
-    margin-left: 15px;
+  list-style-type: circle;
+  margin-left: 15px;
 }
 .jobDesc .jobContent ul li {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 .jobMainGrid {
-    display: grid;
-    grid-template-columns: 60% 40%;
-    grid-gap: 20px;
-    padding: 50px 0;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-gap: 20px;
+  padding: 50px 0;
 }
 .jobMainCard {
-    padding: 25px;
-    align-self: start;
+  padding: 25px;
+  align-self: start;
 }
 .jobMainCard h3 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .overViewList {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #edebec;
-    padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #edebec;
+  padding-bottom: 10px;
 }
 .overViewList:last-child {
-    border-bottom: unset;
-    padding-bottom: 0;
-    margin-bottom: 0;
+  border-bottom: unset;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+@media (max-width: 991px) {
+  .jobMainGrid {
+    grid-template-columns: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .cardDflex {
+    flex-direction: column;
+    align-items: start !important;
+  }
+  .cardDflex .applyBtn {
+    margin-left: 0;
+    margin-top: 10px;
+  }
 }

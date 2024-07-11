@@ -1,36 +1,41 @@
 .jobMain {
-    display: grid;
-    grid-template-columns: 30% 70%;
-    grid-gap: 20px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-gap: 20px;
 }
 .latestJobsMain.jobCard .latestJobCard {
-    border: 1px solid #edebec;
+  border: 1px solid #edebec;
 }
 .latestJobsMain.jobCard {
-    grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 .jobFilter {
-    width: 100%;
-    background-color: #fafafa;
-    border-radius: 6px;
-    padding: 30px;
+  width: 100%;
+  background-color: #fafafa;
+  border-radius: 6px;
+  padding: 30px;
 }
 .jobFilter .filterTitle {
-    font-size: 22px;
+  font-size: 22px;
 }
 .jobSection .title {
-    margin: 0 auto 70px;
+  margin: 0 auto 70px;
 }
 .filterDiv {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 .filterGroup {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .filterType {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 .filterType label {
-    color: #8fa38a;
-    font-weight: 300;
+  color: #8fa38a;
+  font-weight: 300;
+}
+@media (max-width: 991px) {
+  .jobMain {
+    grid-template-columns: 100%;
+  }
 }

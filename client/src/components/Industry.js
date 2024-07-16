@@ -1,4 +1,3 @@
-// components/Industry.js
 import React, { useState } from "react";
 
 const industryOptions = [

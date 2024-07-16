@@ -13,5 +13,4 @@ router.post('/candidate-profile', saveCandidateProfile);
 router.post('/employer-profile', saveEmployerProfile);
 
 
-
 export default router;

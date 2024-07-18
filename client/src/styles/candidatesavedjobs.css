@@ -7,4 +7,5 @@
   padding: 5px 10px;
   background-color: var(--lightGrey);
   border-radius: 8px;
+  text-wrap: nowrap;
 }

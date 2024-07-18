@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import EmployerHeader from "../../components/EmployerHeader";
 import "../../styles/candidatedashboard.css";
@@ -8,22 +7,24 @@ const EmployerDashboard = () => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
 
-
   const [counts, setCounts] = useState({
     jobs: 0,
     candidates: 0,
-    employerName: '',
-    employerEmail: ''
+    employerName: "",
+    employerEmail: "",
   });
 
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/v1/auth/admin-dashboard", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}` 
+        const response = await axios.get(
+          "http://localhost:8000/api/v1/auth/admin-dashboard",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
           }
-        });
+        );
         setCounts(response.data);
       } catch (error) {
         console.error("Error fetching counts", error);

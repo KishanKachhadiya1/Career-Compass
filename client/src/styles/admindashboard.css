@@ -1,49 +1,59 @@
 @import url(../index.css);
 
 .adminDashboard .title {
-    margin: 0 auto 70px;
+  margin: 0 auto 70px;
 }
 .adminDashboard .adminGrid .adminCard {
-    padding: 30px;
+  padding: 30px;
 }
 .adminDashboard .adminGrid .adminCard:nth-child(1) {
-    background-color: #dde5ff;
+  background-color: #dde5ff;
 }
 .adminDashboard .adminGrid .adminCard:nth-child(1) .adminCardIcon {
-    background-color: #e9eeff;
+  background-color: #e9eeff;
 }
 .adminDashboard .adminGrid .adminCard:nth-child(2) {
-    background-color: #ffeaa3;
+  background-color: #ffeaa3;
 }
 .adminDashboard .adminGrid .adminCard:nth-child(2) .adminCardIcon {
-    background-color: #fff3c8;
+  background-color: #fff3c8;
 }
 .adminDashboard .adminGrid .adminCard:nth-child(3) {
-    background-color: #ffdada;
+  background-color: #ffdada;
 }
 .adminDashboard .adminGrid .adminCard:nth-child(3) .adminCardIcon {
-    background-color: #ffe9e9;
+  background-color: #ffe9e9;
 }
 .adminDashboard .adminGrid .adminCard .adminCardIcon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 20px;
 }
 .adminDashboard .adminGrid .adminCard .adminCardIcon svg {
-    height: 1.4em;
+  height: 1.4em;
 }
 .adminDashboard .adminGrid .adminCard .adminCounter {
-    flex-direction: column;
+  flex-direction: column;
 }
 .adminDashboard .adminGrid .adminCard .adminCounter p {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .fs20 {
-    font-size: 20px;
+  font-size: 20px;
 }
 .adminDashboard .adminGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+@media (max-width: 991px) {
+    .adminDashboard .adminGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 767px) {
+    .adminDashboard .adminGrid {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

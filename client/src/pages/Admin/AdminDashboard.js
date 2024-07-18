@@ -13,7 +13,9 @@ const EmployerDashboard = () => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/v1/auth/admin-dashboard");
+        const response = await axios.get(
+          "http://localhost:8000/api/v1/auth/admin-dashboard"
+        );
         setCounts(response.data);
       } catch (error) {
         console.error("Error fetching counts", error);
@@ -44,7 +46,9 @@ const EmployerDashboard = () => {
                 <i className="fa-solid fa-user-tie textPrimary"></i>
               </div>
               <div className="adminCounter dFlex">
-                <p className="textPlaceHolder fwBold fs20">{counts.employers}</p>
+                <p className="textPlaceHolder fwBold fs20">
+                  {counts.employers}
+                </p>
                 <h3 className="textPrimary">Total Employer</h3>
               </div>
             </div>
@@ -53,7 +57,9 @@ const EmployerDashboard = () => {
                 <i className="fa-solid fa-users textPrimary"></i>
               </div>
               <div className="adminCounter dFlex">
-                <p className="textPlaceHolder fwBold fs20">{counts.candidates}</p>
+                <p className="textPlaceHolder fwBold fs20">
+                  {counts.candidates}
+                </p>
                 <h3 className="textPrimary">Total Candidate</h3>
               </div>
             </div>

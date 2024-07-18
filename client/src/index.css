@@ -302,7 +302,9 @@ footer .footerMain .footerList .menu-list span:hover {
 .menu .menu-group {
   margin-right: 40px;
 }
-
+.cursorPointer {
+  cursor: pointer;
+}
 /* Media query starts  */
 @media (min-width: 576px) {
   .container {

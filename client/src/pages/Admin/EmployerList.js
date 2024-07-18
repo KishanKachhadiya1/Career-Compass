@@ -1,32 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AdminHeader from "../../components/AdminHeader";
 import "../../styles/employerlist.css";
 import "../../styles/candidatelist.css";
 // https://unsplash.com/photos/a-man-wearing-glasses-and-a-black-shirt-iEEBWgY_6lA
 import candidateProfile from "../../images/candidateProfile.jpg";
 
-const employerList = [
-  {
-    id: 1,
-    logo: candidateProfile,
-    name: "Kishan Kachhadiya",
-    email: "kishan@gmail.com",
-  },
-  {
-    id: 2,
-    logo: candidateProfile,
-    name: "Kirtan Chaklasiya",
-    email: "kirtan@gmail.com",
-  },
-  {
-    id: 3,
-    logo: candidateProfile,
-    name: "Jainil Patel",
-    email: "jaimil@gmail.com",
-  },
-];
-
 const EmployerList = () => {
+  const [employers, setEmployers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    const fetchEmployers = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8000/api/v1/auth/employer-profiles"
+        );
+        const data = await response.json();
+        setEmployers(data);
+      } catch (error) {
+        console.error("Error fetching employers:", error);
+      }
+    };
+
+    fetchEmployers();
+  }, []);
+
+  const deleteEmployer = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/v1/auth/employer-profile/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.ok) {
+        setEmployers(employers.filter((employer) => employer._id !== id));
+      } else {
+        console.error("Failed to delete employer");
+      }
+    } catch (error) {
+      console.error("Error deleting employer:", error);
+    }
+  };
+
+  const filteredEmployers = employers.filter((employer) =>
+    employer.companyName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <>
       <AdminHeader />
@@ -34,9 +54,15 @@ const EmployerList = () => {
         <h2 className="title textPrimary">Employers List</h2>
         <div className="candSearch dFlex">
           <span className="rounded-6 dFlex justifyCenter alignCenter">
-            <i class="fa-solid fa-magnifying-glass textPrimary"></i>
+            <i className="fa-solid fa-magnifying-glass textPrimary"></i>
           </span>
-          <input type="text" placeholder="Search..." className="formControl" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="formControl"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
         </div>
         <div className="candDataTable">
           <table
@@ -54,16 +80,21 @@ const EmployerList = () => {
               </tr>
             </thead>
             <tbody>
-              {employerList.map((employer) => (
-                <tr key={employer.id}>
+              {filteredEmployers.map((employer) => (
+                <tr key={employer._id}>
                   <td>
-                    <img src={employer.logo} alt={`${employer.name} logo`} />
+                    <img
+                      src={candidateProfile}
+                      alt={`${employer.companyName} logo`}
+                    />
                   </td>
-                  <td>{employer.name}</td>
+                  <td>{employer.companyName}</td>
                   <td>{employer.email}</td>
                   <td>
-                    <i class="fa-solid fa-pen-to-square textPrimary editIcon"></i>
-                    <i class="fa-solid fa-trash-can textDanger"></i>
+                    <i className="fa-solid fa-pen-to-square textPrimary editIcon"></i>
+                    <span onClick={() => deleteEmployer(employer._id)} className="cursorPointer">
+                      <i className="fa-solid fa-trash-can textDanger"></i>
+                    </span>
                   </td>
                 </tr>
               ))}

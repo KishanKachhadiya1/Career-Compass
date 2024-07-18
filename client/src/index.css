@@ -388,6 +388,13 @@ footer .footerMain .footerList .menu-list span:hover {
     margin-top: 10px;
     margin-left: 0;
   }
+  .commonDropdown .dropbtn {
+    padding-left: 0;
+  }
+  .commonDropdown {
+    width: 100% !important;
+    display: block !important;
+  }
 }
 @media (max-width: 575px) {
   .jobCatMain,

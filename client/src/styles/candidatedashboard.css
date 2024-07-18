@@ -1,50 +1,74 @@
 @import url(../index.css);
 
 .candidateDashboard .title {
-    margin: 0 auto 70px;
+  margin: 0 auto 70px;
 }
 .candidateDashboard .candidateDbCard .candidateDbGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
 }
 .candidateDashboard .candidateDbCard .candidateDbGrid .candidateDbProfile {
-    padding: 30px;
-    flex-direction: column;
-} 
-.candidateDashboard .candidateDbCard .candidateDbGrid .candidateDbProfile .candidateDbIcon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 20px;
+  padding: 30px;
+  flex-direction: column;
 }
-.candidateDashboard .candidateDbCard .candidateDbGrid .candidateDbProfile .candidateDbIcon svg {
-    height: 1.4em;
+.candidateDashboard
+  .candidateDbCard
+  .candidateDbGrid
+  .candidateDbProfile
+  .candidateDbIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+.candidateDashboard
+  .candidateDbCard
+  .candidateDbGrid
+  .candidateDbProfile
+  .candidateDbIcon
+  svg {
+  height: 1.4em;
 }
 .candidateDashboard .candidateDbCard .candidateDbGrid .candidateDbProfile h3 {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
-.candidateDashboard .candidateDbCard .candidateDbGrid .candidateDbProfile p span {
-    margin-left: 10px;
+.candidateDashboard
+  .candidateDbCard
+  .candidateDbGrid
+  .candidateDbProfile
+  p
+  span {
+  margin-left: 10px;
 }
 .fs20 {
-    font-size: 20px;
+  font-size: 20px;
 }
 .dbCardOne {
-    background-color: #dde5ff;
+  background-color: #dde5ff;
 }
 .bgOne {
-    background-color: #e9eeff;
+  background-color: #e9eeff;
 }
 .dbCardTwo {
-    background-color: #ffeaa3;
+  background-color: #ffeaa3;
 }
 .bgTwo {
-    background-color: #fff3c8;
+  background-color: #fff3c8;
 }
 .dbCardThree {
-    background-color: #ffdada;
+  background-color: #ffdada;
 }
 .bgThree {
-    background-color: #ffe9e9;
+  background-color: #ffe9e9;
+}
+@media (max-width: 991px) {
+    .candidateDashboard .candidateDbCard .candidateDbGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 767px) {
+    .candidateDashboard .candidateDbCard .candidateDbGrid {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

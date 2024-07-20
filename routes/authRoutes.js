@@ -1,6 +1,6 @@
 import express from 'express';
 import { register, login } from '../controllers/authController.js';
-import { saveCandidateProfile } from '../controllers/CandidateProfileController.js';
+import { saveCandidateProfile, getCandidateProfileByEmail,updateCandidateProfile } from '../controllers/CandidateProfileController.js';
 import { saveEmployerProfile } from '../controllers/EmployerProfileController.js';
 import { createJob } from '../controllers/JobController.js'
 import { getCounts,employerdashboard } from '../controllers/DashboardController.js';
@@ -15,5 +15,9 @@ router.post('/employer-profile', saveEmployerProfile);
 router.post('/employer-jobs', createJob);
 router.get('/admin-dashboard', getCounts);  
 router.get('/employer-dashboard',employerdashboard);
+router.get('/candidate-profile', getCandidateProfileByEmail);  
+router.put('/candidate-edit-profile', updateCandidateProfile);
+
+
 
 export default router;

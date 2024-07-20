@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CandidateHeader from "../../components/CandidateHeader";
 import "../../styles/candidateprofile.css";
 import Skills from "../../components/Skills";
@@ -22,6 +22,39 @@ const CandidateProfile = () => {
     skills: [],
     languages: [],
   });
+  const [submitted, setSubmitted] = useState(false); // State to track submission
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user && user.email) {
+          const response = await fetch(`http://localhost:8000/api/v1/auth/candidate-profile?email=${user.email}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+          });
+
+          if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(`Failed to fetch profile. Server responded with ${response.status}: ${errorMessage}`);
+          }
+
+          const profileData = await response.json();
+          setFormData(profileData);
+
+          // Check if profile is already submitted
+          if (profileData.email) {
+            setSubmitted(true);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+
+    fetchProfileData();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +70,7 @@ const CandidateProfile = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem('token')}`
           },
           body: JSON.stringify(formData),
         }
@@ -44,13 +78,14 @@ const CandidateProfile = () => {
 
       if (!response.ok) {
         const errorMessage = await response.text();
-        throw new Error(
-          `Failed to save profile. Server responded with ${response.status}: ${errorMessage}`
-        );
+        throw new Error(`Failed to save profile. Server responded with ${response.status}: ${errorMessage}`);
       }
 
       const result = await response.json();
       console.log("Profile saved successfully:", result);
+
+      localStorage.setItem("candidateProfile", JSON.stringify(result));
+      setSubmitted(true); // Set submitted to true after successful save
     } catch (error) {
       console.error("Error saving profile:", error);
     }
@@ -73,7 +108,8 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="First name *"
                   className="formControl"
-                  required  
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -85,7 +121,8 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="Last name *"
                   className="formControl"
-                  required  
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -97,7 +134,8 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="E-mail *"
                   className="formControl"
-                  required  
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -109,7 +147,8 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="Phone number *"
                   className="formControl"
-                  required  
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -121,7 +160,8 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="Birth date *"
                   className="formControl"
-                  required  
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -135,7 +175,8 @@ const CandidateProfile = () => {
                       value="Male"
                       checked={formData.gender === "Male"}
                       onChange={handleChange}
-                      required  
+                      required
+                      disabled={submitted}
                     />
                     <label className="radioLabel">Male</label>
                   </div>
@@ -147,7 +188,8 @@ const CandidateProfile = () => {
                       value="Female"
                       checked={formData.gender === "Female"}
                       onChange={handleChange}
-                      required  
+                      required
+                      disabled={submitted}
                     />
                     <label className="radioLabel">Female</label>
                   </div>
@@ -155,15 +197,15 @@ const CandidateProfile = () => {
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Skills</label>
-                <Skills setFormData={setFormData} required />
+                <Skills setFormData={setFormData} required disabled={submitted} />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Languages</label>
-                <Languages setFormData={setFormData} required />
+                <Languages setFormData={setFormData} required disabled={submitted} />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Marital Status</label>
-                <MaritalStatus setFormData={setFormData} required />
+                <MaritalStatus setFormData={setFormData} required disabled={submitted} />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Country</label>
@@ -174,7 +216,8 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="Country *"
                   className="formControl"
-                  required  
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -186,7 +229,8 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="State *"
                   className="formControl"
-                  required 
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -198,7 +242,8 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="City *"
                   className="formControl"
-                  required  
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -210,7 +255,8 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="Experience (ex. 1 year) *"
                   className="formControl"
-                  required  
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -222,11 +268,12 @@ const CandidateProfile = () => {
                   onChange={handleChange}
                   placeholder="Address *"
                   className="formControl"
-                  required  
+                  required
+                  disabled={submitted}
                 />
               </div>
             </div>
-            <button type="submit" className="btn bgPrimary textWhite">
+            <button type="submit" className="btn bgPrimary textWhite" disabled={submitted}>
               Save
             </button>
           </form>

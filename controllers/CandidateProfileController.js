@@ -43,3 +43,31 @@ export const saveCandidateProfile = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+
+export const getCandidateProfileByEmail = async (req, res) => {
+  try {
+    const { email } = req.query;
+    const profile = await CandidateProfile.findOne({ email });
+    if (!profile) {
+      return res.status(404).send('Profile not found');
+    }
+    res.json(profile);
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+};
+
+
+export const updateCandidateProfile = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const updatedProfile = await CandidateProfile.findOneAndUpdate({ email }, req.body, { new: true });
+    if (!updatedProfile) {
+      return res.status(404).send('Profile not found');
+    }
+    res.json(updatedProfile);
+  } catch (error) {
+    res.status(400).send('Error updating profile');
+  }
+};

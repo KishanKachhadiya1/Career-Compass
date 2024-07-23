@@ -9,6 +9,8 @@ import {
 } from "../controllers/CandidateProfileController.js";
 import {
   saveEmployerProfile,
+  getEmployerProfileByEmail,
+  updateEmployerProfile,
   getEmployerProfiles,
   deleteEmployerProfile,
 } from "../controllers/EmployerProfileController.js";
@@ -33,5 +35,7 @@ router.get("/employer-profiles", getEmployerProfiles);
 router.delete("/employer-profile/:id", deleteEmployerProfile);
 router.get("/candidate-profiles", getCandidateProfiles);
 router.delete("/candidate-profile/:id", deleteCandidateProfile);
+router.get("/employer-profile",getEmployerProfileByEmail);
+router.put("/employer-edit-profile",updateEmployerProfile);
 
 export default router;

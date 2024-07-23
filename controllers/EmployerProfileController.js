@@ -42,6 +42,34 @@ export const saveEmployerProfile = async (req, res) => {
   }
 };
 
+
+export const getEmployerProfileByEmail = async (req, res) => {
+  try {
+    const { email } = req.query;
+    const profile = await EmployerProfile.findOne({ email });
+    if (!profile) {
+      return res.status(404).send('Profile not found');
+    }
+    res.json(profile);
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+};
+
+
+export const updateEmployerProfile = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const updatedProfile = await EmployerProfile.findOneAndUpdate({ email }, req.body, { new: true });
+    if (!updatedProfile) {
+      return res.status(404).send('Profile not found');
+    }
+    res.json(updatedProfile);
+  } catch (error) {
+    res.status(400).send('Error updating profile');
+  }
+};
+
 export const getEmployerProfiles = async (req, res) => {
   try {
     const profiles = await EmployerProfile.find({});

@@ -1,5 +1,4 @@
-// EmployerProfile.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EmployerHeader from "../../components/EmployerHeader";
 import "../../styles/employerprofile.css";
 import "../../styles/candidateprofile.css";
@@ -21,6 +20,38 @@ const EmployerProfile = () => {
     website: "",
     employerDetails: "",
   });
+  const [submitted, setSubmitted] = useState(false); // State to track submission
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user && user.email ) {
+          const response = await fetch(`http://localhost:8000/api/v1/auth/employer-profile?email=${user.email}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+          });
+
+          if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(`Failed to fetch profile. Server responded with ${response.status}: ${errorMessage}`);
+          }
+
+          const profileData = await response.json();
+          setFormData(profileData);
+
+          if (profileData.email) {
+            setSubmitted(true);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+
+    fetchProfileData();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,26 +61,25 @@ const EmployerProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        "http://localhost:8000/api/v1/auth/employer-profile",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("http://localhost:8000/api/v1/auth/employer-profile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (!response.ok) {
         const errorMessage = await response.text();
-        throw new Error(
-          `Failed to save profile. Server responded with ${response.status}: ${errorMessage}`
-        );
+        throw new Error(`Failed to save profile. Server responded with ${response.status}: ${errorMessage}`);
       }
 
       const result = await response.json();
       console.log("Profile saved successfully:", result);
+
+      localStorage.setItem("employerProfile", JSON.stringify(result));
+      setSubmitted(true);
     } catch (error) {
       console.error("Error saving profile:", error);
     }
@@ -72,17 +102,21 @@ const EmployerProfile = () => {
                   onChange={handleChange}
                   placeholder="Company name *"
                   className="formControl"
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">E-mail</label>
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="E-mail *"
                   className="formControl"
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -94,6 +128,8 @@ const EmployerProfile = () => {
                   onChange={handleChange}
                   placeholder="Phone number *"
                   className="formControl"
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -105,6 +141,8 @@ const EmployerProfile = () => {
                   onChange={handleChange}
                   placeholder="CEO name *"
                   className="formControl"
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -116,6 +154,8 @@ const EmployerProfile = () => {
                   onChange={handleChange}
                   placeholder="Ex. 5-10 *"
                   className="formControl"
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -127,6 +167,8 @@ const EmployerProfile = () => {
                   onChange={handleChange}
                   placeholder="Ex. private, public *"
                   className="formControl"
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -138,6 +180,8 @@ const EmployerProfile = () => {
                   onChange={handleChange}
                   placeholder="Ex. 2024 *"
                   className="formControl"
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -149,6 +193,8 @@ const EmployerProfile = () => {
                   onChange={handleChange}
                   placeholder="Country *"
                   className="formControl"
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -160,6 +206,8 @@ const EmployerProfile = () => {
                   onChange={handleChange}
                   placeholder="State *"
                   className="formControl"
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
@@ -171,11 +219,13 @@ const EmployerProfile = () => {
                   onChange={handleChange}
                   placeholder="City *"
                   className="formControl"
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Industry</label>
-                <Industry setFormData={setFormData} />
+                <Industry setFormData={setFormData} required disabled={submitted} />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Website</label>
@@ -186,6 +236,8 @@ const EmployerProfile = () => {
                   onChange={handleChange}
                   placeholder="www.website.com *"
                   className="formControl"
+                  required
+                  disabled={submitted}
                 />
               </div>
               <div className="formGroup fullWidth">
@@ -197,10 +249,12 @@ const EmployerProfile = () => {
                   onChange={handleChange}
                   placeholder="Employer details.."
                   className="formControl"
+                  required
+                  disabled={submitted}
                 ></textarea>
               </div>
             </div>
-            <button type="submit" className="btn bgPrimary textWhite">
+            <button type="submit" className="btn bgPrimary textWhite" disabled={submitted}>
               Save
             </button>
           </form>

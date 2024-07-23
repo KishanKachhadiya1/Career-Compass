@@ -1,4 +1,3 @@
-// controllers/candidateProfile.controller.js
 import CandidateProfile from '../models/CandidateModel.js';
 
 export const saveCandidateProfile = async (req, res) => {
@@ -69,5 +68,24 @@ export const updateCandidateProfile = async (req, res) => {
     res.json(updatedProfile);
   } catch (error) {
     res.status(400).send('Error updating profile');
+  }
+};
+
+export const getCandidateProfiles = async (req, res) => {
+  try {
+    const profiles = await CandidateProfile.find({});
+    res.status(200).json(profiles);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const deleteCandidateProfile = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await CandidateProfile.findByIdAndDelete(id);
+    res.status(200).json({ message: "Candidate profile deleted successfully." });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };

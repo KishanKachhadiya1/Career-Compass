@@ -4,6 +4,8 @@ import {
   saveCandidateProfile,
   getCandidateProfileByEmail,
   updateCandidateProfile,
+  getCandidateProfiles,
+  deleteCandidateProfile,
 } from "../controllers/CandidateProfileController.js";
 import {
   saveEmployerProfile,
@@ -29,5 +31,7 @@ router.get("/candidate-profile", getCandidateProfileByEmail);
 router.put("/candidate-edit-profile", updateCandidateProfile);
 router.get("/employer-profiles", getEmployerProfiles);
 router.delete("/employer-profile/:id", deleteEmployerProfile);
+router.get("/candidate-profiles", getCandidateProfiles);
+router.delete("/candidate-profile/:id", deleteCandidateProfile);
 
 export default router;

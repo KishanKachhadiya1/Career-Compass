@@ -3,6 +3,7 @@ import EmployerHeader from "../../components/EmployerHeader";
 import "../../styles/employerprofile.css";
 import "../../styles/candidateprofile.css";
 import Industry from "../../components/Industry";
+import { useNavigate } from 'react-router-dom';
 
 const EmployerProfile = () => {
   const [formData, setFormData] = useState({
@@ -20,13 +21,16 @@ const EmployerProfile = () => {
     website: "",
     employerDetails: "",
   });
-  const [submitted, setSubmitted] = useState(false); // State to track submission
+  const [selectedIndustry, setSelectedIndustry] = useState("");
+  const [submitted, setSubmitted] = useState(false); 
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
-        if (user && user.email ) {
+        if (user && user.email) {
           const response = await fetch(`http://localhost:8000/api/v1/auth/employer-profile?email=${user.email}`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -40,6 +44,7 @@ const EmployerProfile = () => {
 
           const profileData = await response.json();
           setFormData(profileData);
+          setSelectedIndustry(profileData.industry || ""); 
 
           if (profileData.email) {
             setSubmitted(true);
@@ -76,6 +81,7 @@ const EmployerProfile = () => {
       }
 
       const result = await response.json();
+      navigate('/employer/employer-dashboard');
       console.log("Profile saved successfully:", result);
 
       localStorage.setItem("employerProfile", JSON.stringify(result));
@@ -225,7 +231,7 @@ const EmployerProfile = () => {
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Industry</label>
-                <Industry setFormData={setFormData} required disabled={submitted} />
+                <Industry setFormData={setFormData} selectedIndustry={selectedIndustry} setSelectedIndustry={setSelectedIndustry} required disabled={submitted} />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Website</label>

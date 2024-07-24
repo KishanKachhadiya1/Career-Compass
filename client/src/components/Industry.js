@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const industryOptions = [
   { value: "IT", label: "Information Technology" },
@@ -11,8 +11,10 @@ const industryOptions = [
   { value: "Transportation", label: "Transportation" },
 ];
 
-const Industry = ({ setFormData }) => {
-  const [selectedIndustry, setSelectedIndustry] = useState("");
+const Industry = ({ setFormData, selectedIndustry, setSelectedIndustry }) => {
+  useEffect(() => {
+    setSelectedIndustry(selectedIndustry);
+  }, [selectedIndustry, setSelectedIndustry]);
 
   const handleChange = (event) => {
     const { value } = event.target;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import EmployerHeader from "../../components/EmployerHeader";
 import "../../styles/employerprofile.css";
 import "../../styles/candidateprofile.css";
@@ -19,6 +20,8 @@ const EmployerEditProfile = () => {
     employerDetails: ""
   });
 
+  const [selectedIndustry, setSelectedIndustry] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
@@ -37,6 +40,7 @@ const EmployerEditProfile = () => {
 
           const profileData = await response.json();
           setFormData(profileData);
+          setSelectedIndustry(profileData.industry);
         }
       } catch (error) {
         console.error("Error fetching profile data:", error);
@@ -69,6 +73,7 @@ const EmployerEditProfile = () => {
       }
 
       const result = await response.json();
+      navigate('/employer/employer-dashboard');
       console.log("Profile updated successfully:", result);
 
     } catch (error) {
@@ -176,7 +181,8 @@ const EmployerEditProfile = () => {
                 <label className="textPrimary dBlock">Industry</label>
                 <Industry
                   setFormData={setFormData}
-                  industry={formData.industry}
+                  selectedIndustry={selectedIndustry}
+                  setSelectedIndustry={setSelectedIndustry}
                 />
               </div>
               <div className="formGroup">

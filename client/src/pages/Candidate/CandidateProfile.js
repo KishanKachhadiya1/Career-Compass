@@ -22,7 +22,7 @@ const CandidateProfile = () => {
     skills: [],
     languages: [],
   });
-  const [submitted, setSubmitted] = useState(false); // State to track submission
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -41,9 +41,14 @@ const CandidateProfile = () => {
           }
 
           const profileData = await response.json();
+          console.log("Fetched profile data:", profileData);  
+          
+          if (profileData.birthDate) {
+            profileData.birthDate = new Date(profileData.birthDate).toISOString().split('T')[0];
+          }
+          
           setFormData(profileData);
 
-          // Check if profile is already submitted
           if (profileData.email) {
             setSubmitted(true);
           }
@@ -85,7 +90,7 @@ const CandidateProfile = () => {
       console.log("Profile saved successfully:", result);
 
       localStorage.setItem("candidateProfile", JSON.stringify(result));
-      setSubmitted(true); // Set submitted to true after successful save
+      setSubmitted(true);
     } catch (error) {
       console.error("Error saving profile:", error);
     }
@@ -197,15 +202,15 @@ const CandidateProfile = () => {
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Skills</label>
-                <Skills setFormData={setFormData} required disabled={submitted} />
+                <Skills skills={formData.skills} setFormData={setFormData} required disabled={submitted} />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Languages</label>
-                <Languages setFormData={setFormData} required disabled={submitted} />
+                <Languages languages={formData.languages} setFormData={setFormData} required disabled={submitted} />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Marital Status</label>
-                <MaritalStatus setFormData={setFormData} required disabled={submitted} />
+                <MaritalStatus maritalStatus={formData.maritalStatus} setFormData={setFormData} required disabled={submitted} />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Country</label>

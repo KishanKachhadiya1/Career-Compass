@@ -1,5 +1,4 @@
-// Languages.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const languagesOptions = [
   { value: "english", label: "English" },
@@ -12,11 +11,16 @@ const languagesOptions = [
   { value: "japanese", label: "Japanese" },
 ];
 
-const Languages = ({ setFormData }) => {
+const Languages = ({ languages, setFormData, disabled }) => {
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  useEffect(() => {
+    setSelectedLanguages(languages);
+  }, [languages]);
+
   const toggleLanguage = (value) => {
+    if (disabled) return;
     setSelectedLanguages((prevLanguages) => {
       const newLanguages = prevLanguages.includes(value)
         ? prevLanguages.filter((language) => language !== value)
@@ -34,18 +38,19 @@ const Languages = ({ setFormData }) => {
   const selectedLanguagesLabels = selectedLanguages
     .map(
       (language) =>
-        languagesOptions.find((option) => option.value === language).label
+        languagesOptions.find((option) => option.value === language)?.label
     )
     .join(", ");
 
   const toggleDropdown = () => {
+    if (disabled) return;
     setDropdownOpen(!dropdownOpen);
   };
 
   return (
     <>
       <div className="dropdown">
-        <button onClick={toggleDropdown}>
+        <button onClick={toggleDropdown} disabled={disabled}>
           {selectedLanguages.length > 0
             ? selectedLanguagesLabels
             : "Select Languages"}

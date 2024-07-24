@@ -1,5 +1,4 @@
-// MaritalStatus.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const maritalStatusOptions = [
   { value: "single", label: "Single" },
@@ -9,11 +8,16 @@ const maritalStatusOptions = [
   { value: "separated", label: "Separated" },
 ];
 
-const MaritalStatus = ({ setFormData }) => {
+const MaritalStatus = ({ maritalStatus, setFormData, disabled }) => {
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  useEffect(() => {
+    setSelectedStatus(maritalStatus);
+  }, [maritalStatus]);
+
   const selectStatus = (value) => {
+    if (disabled) return;
     setSelectedStatus(value);
     setDropdownOpen(false);
     setFormData((prevFormData) => ({
@@ -25,11 +29,11 @@ const MaritalStatus = ({ setFormData }) => {
   return (
     <>
       <div className="dropdown">
-        <button onClick={() => setDropdownOpen(!dropdownOpen)}>
+        <button onClick={() => setDropdownOpen(!dropdownOpen)} disabled={disabled}>
           {selectedStatus
             ? maritalStatusOptions.find(
                 (option) => option.value === selectedStatus
-              ).label
+              )?.label
             : "Select Marital Status"}
         </button>
         {dropdownOpen && (

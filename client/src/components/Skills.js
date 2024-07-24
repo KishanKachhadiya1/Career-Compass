@@ -1,5 +1,4 @@
-// Skills.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const skillsOptions = [
   { value: "programming", label: "Programming" },
@@ -13,12 +12,17 @@ const skillsOptions = [
   { value: "communication-skill", label: "Communication skill" },
 ];
 
-const Skills = ({ setFormData }) => {
+const Skills = ({ skills, setFormData, disabled }) => {
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  useEffect(() => {
+    setSelectedSkills(skills);
+  }, [skills]);
+
   const toggleSkill = (event, value) => {
     event.preventDefault();
+    if (disabled) return;
     setSelectedSkills((prevSkills) => {
       const newSkills = prevSkills.includes(value)
         ? prevSkills.filter((skill) => skill !== value)
@@ -35,19 +39,20 @@ const Skills = ({ setFormData }) => {
 
   const toggleDropdown = (event) => {
     event.preventDefault();
+    if (disabled) return;
     setDropdownOpen(!dropdownOpen);
   };
 
   const selectedSkillsLabels = selectedSkills
     .map(
-      (skill) => skillsOptions.find((option) => option.value === skill).label
+      (skill) => skillsOptions.find((option) => option.value === skill)?.label
     )
     .join(", ");
 
   return (
     <>
       <div className="dropdown">
-        <button onClick={toggleDropdown}>
+        <button onClick={toggleDropdown} disabled={disabled}>
           {selectedSkills.length > 0 ? selectedSkillsLabels : "Select Skills"}
         </button>
         {dropdownOpen && (

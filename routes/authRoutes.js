@@ -26,7 +26,7 @@ router.post("/register", register);
 router.post("/login", login);
 router.post("/candidate-profile", saveCandidateProfile);
 router.post("/employer-profile", saveEmployerProfile);
-router.post("/employer-jobs", createJob);
+router.post("/employer-jobs/add", createJob);
 router.get("/admin-dashboard", getCounts);
 router.get("/employer-dashboard", employerdashboard);
 router.get("/candidate-profile", getCandidateProfileByEmail);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const jobShiftOptions = [
   { value: "part-time", label: "Part-time" },
@@ -7,13 +7,21 @@ const jobShiftOptions = [
   { value: "on-call", label: "On-call" },
 ];
 
-const JobShift = () => {
-  const [selectedShift, setSelectedShift] = useState(null);
+const JobShift = ({ setFormData, jobShift }) => {
+  const [selectedShift, setSelectedShift] = useState(jobShift || null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    setSelectedShift(jobShift);
+  }, [jobShift]);
 
   const selectShift = (event, value) => {
     event.preventDefault();
     setSelectedShift(value);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      jobShift: value,
+    }));
     setDropdownOpen(false);
   };
 
@@ -27,8 +35,7 @@ const JobShift = () => {
       <div className="dropdown">
         <button onClick={toggleDropdown}>
           {selectedShift
-            ? jobShiftOptions.find((option) => option.value === selectedShift)
-                .label
+            ? jobShiftOptions.find((option) => option.value === selectedShift).label
             : "Select Job Shift"}
         </button>
         {dropdownOpen && (

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
-const industryOptions = [
+export const industryOptions = [
   { value: "IT", label: "Information Technology" },
   { value: "Finance", label: "Finance" },
   { value: "Healthcare", label: "Healthcare" },

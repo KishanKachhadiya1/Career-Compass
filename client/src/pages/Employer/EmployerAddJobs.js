@@ -12,7 +12,7 @@ const EmployerAddJobs = () => {
   const [formData, setFormData] = useState({
     jobTitle: "",
     industry: "",
-    skills: [],
+    skills: [], // Ensure skills is always initialized as an empty array
     jobShift: "",
     degreeLevel: "",
     country: "",
@@ -24,36 +24,40 @@ const EmployerAddJobs = () => {
     salaryTo: "",
     keyResponsibilities: "",
     benefits: "",
-    jobDescription: ""
+    jobDescription: "",
   });
+
+  const [selectedIndustry, setSelectedIndustry] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/api/v1/auth/employer-jobs/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "http://localhost:8000/api/v1/auth/employer-jobs/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
         const errorMessage = await response.text();
-        throw new Error(`Failed to add job. Server responded with ${response.status}: ${errorMessage}`);
+        throw new Error(
+          `Failed to add job. Server responded with ${response.status}: ${errorMessage}`
+        );
       }
 
       const result = await response.json();
       console.log("Job added successfully:", result);
-
     } catch (error) {
       console.error("Error adding job:", error);
     }
@@ -82,25 +86,25 @@ const EmployerAddJobs = () => {
                 <label className="textPrimary dBlock">Industry</label>
                 <Industry
                   setFormData={setFormData}
-                  industry={formData.industry}
+                  selectedIndustry={selectedIndustry}
+                  setSelectedIndustry={setSelectedIndustry}
                 />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Skills</label>
-                <Skills setFormData={setFormData} required  />
-
+                <Skills
+                  skills={formData.skills} // Pass the skills from formData
+                  setFormData={setFormData}
+                  required
+                />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Job Shift</label>
-                <JobShift
-                  setFormData={setFormData} required
-                />
+                <JobShift setFormData={setFormData} required />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Degree Level</label>
-                <DegreeLevel
-                  setFormData={setFormData} required
-                />
+                <DegreeLevel setFormData={setFormData} required />
               </div>
               <div className="formGroup">
                 <label className="textPrimary dBlock">Country</label>
@@ -207,7 +211,9 @@ const EmployerAddJobs = () => {
                 />
               </div>
               <div className="formGroup">
-                <label className="textPrimary dBlock">Key Responsibilities</label>
+                <label className="textPrimary dBlock">
+                  Key Responsibilities
+                </label>
                 <textarea
                   rows={5}
                   name="keyResponsibilities"
@@ -243,7 +249,11 @@ const EmployerAddJobs = () => {
             <button type="submit" className="btn bgPrimary textWhite">
               Add Job
             </button>
-            <Link to="/employer/employer-jobs" type="submit" className="btn bgDarkGrey textPrimary ml-20">
+            <Link
+              to="/employer/employer-jobs"
+              type="submit"
+              className="btn bgDarkGrey textPrimary ml-20"
+            >
               Cancel
             </Link>
           </form>

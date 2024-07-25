@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/home.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-// https://www.freepik.com/free-vector/gradient-coding-logo-template_11817415.htm#query=web%20development%20logo&position=11&from_view=keyword&track=ais_user&uuid=ee8f
-import categoryLogo from "../images/categoryLogo.jpg";
 import JobCard from "../components/JobCard";
+import axios from "axios";
+import { industryOptions } from "../components/Industry";
 
 const Home = () => {
+  const [latestJobs, setLatestJobs] = useState([]);
+
+  useEffect(() => {
+    const fetchLatestJobs = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/v1/auth/latest-jobs"
+        );
+        console.log(response.data);
+        setLatestJobs(response.data);
+      } catch (error) {
+        console.error("Error fetching latest jobs", error);
+      }
+    };
+
+    fetchLatestJobs();
+  }, []);
+
   return (
     <div>
       <Header />
@@ -34,46 +52,14 @@ const Home = () => {
         <div className="container">
           <h2 className="title textPrimary">Job Categories</h2>
           <div className="jobCatMain">
-            <div className="jobCatCard bgLightGrey rounded-6 dFlex alignCenter justifyCenter">
-              <img src={categoryLogo} alt="Category Logo" />
-              <h3 className="textPrimary">Software Developer</h3>
-              <p className="textDark">1 Open Position</p>
-            </div>
-            <div className="jobCatCard bgLightGrey rounded-6 dFlex alignCenter justifyCenter">
-              <img src={categoryLogo} alt="Category Logo" />
-              <h3 className="textPrimary">Software Developer</h3>
-              <p className="textDark">1 Open Position</p>
-            </div>
-            <div className="jobCatCard bgLightGrey rounded-6 dFlex alignCenter justifyCenter">
-              <img src={categoryLogo} alt="Category Logo" />
-              <h3 className="textPrimary">Software Developer</h3>
-              <p className="textDark">1 Open Position</p>
-            </div>
-            <div className="jobCatCard bgLightGrey rounded-6 dFlex alignCenter justifyCenter">
-              <img src={categoryLogo} alt="Category Logo" />
-              <h3 className="textPrimary">Software Developer</h3>
-              <p className="textDark">1 Open Position</p>
-            </div>
-            <div className="jobCatCard bgLightGrey rounded-6 dFlex alignCenter justifyCenter">
-              <img src={categoryLogo} alt="Category Logo" />
-              <h3 className="textPrimary">Software Developer</h3>
-              <p className="textDark">1 Open Position</p>
-            </div>
-            <div className="jobCatCard bgLightGrey rounded-6 dFlex alignCenter justifyCenter">
-              <img src={categoryLogo} alt="Category Logo" />
-              <h3 className="textPrimary">Software Developer</h3>
-              <p className="textDark">1 Open Position</p>
-            </div>
-            <div className="jobCatCard bgLightGrey rounded-6 dFlex alignCenter justifyCenter">
-              <img src={categoryLogo} alt="Category Logo" />
-              <h3 className="textPrimary">Software Developer</h3>
-              <p className="textDark">1 Open Position</p>
-            </div>
-            <div className="jobCatCard bgLightGrey rounded-6 dFlex alignCenter justifyCenter">
-              <img src={categoryLogo} alt="Category Logo" />
-              <h3 className="textPrimary">Software Developer</h3>
-              <p className="textDark">1 Open Position</p>
-            </div>
+            {industryOptions.map((industry) => (
+              <div
+                key={industry.value}
+                className="jobCatCard bgLightGrey rounded-6 dFlex alignCenter justifyCenter"
+              >
+                <h3 className="textPrimary">{industry.label}</h3>
+              </div>
+            ))}
           </div>
           <Link to="/jobs" className="btn">
             BROWSE ALL
@@ -84,9 +70,13 @@ const Home = () => {
         <div className="container">
           <h2 className="title textPrimary">Latest Jobs</h2>
           <div className="latestJobsMain">
-            <JobCard />
-            <JobCard />
-            <JobCard />
+            {latestJobs.length ? (
+              latestJobs
+                .slice(0, 3)
+                .map((job) => <JobCard key={job._id} job={job} />)
+            ) : (
+              <p>No jobs available</p>
+            )}
           </div>
           <Link to="/jobs" className="btn">
             BROWSE ALL

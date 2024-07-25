@@ -45,3 +45,12 @@ export const createJob = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+export const getLatestJobs = async (req, res) => {
+  try {
+    const jobs = await JobProfile.find().sort({ createdAt: -1 }).limit(10);
+    res.status(200).json(jobs);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};

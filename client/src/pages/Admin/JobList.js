@@ -1,47 +1,81 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AdminHeader from "../../components/AdminHeader";
 import "../../styles/joblist.css";
-// https://unsplash.com/photos/a-man-wearing-glasses-and-a-black-shirt-iEEBWgY_6lA
-import candidateProfile from "../../images/candidateProfile.jpg";
-
-const jobList = [
-  {
-    id: 1,
-    jobTitle: "Web Designer",
-    logo: candidateProfile,
-    name: "Kishan Kachhadiya",
-    email: "kishan@gmail.com",
-    createdOn: "19th May, 2024",
-  },
-  {
-    id: 2,
-    jobTitle: "MERN stack Developer",
-    logo: candidateProfile,
-    name: "Kirtan Chaklasiya",
-    email: "kirtan@gmail.com",
-    createdOn: "24th June, 2024",
-  },
-  {
-    id: 3,
-    jobTitle: "Graphic Designer",
-    logo: candidateProfile,
-    name: "Jainil Patel",
-    email: "jaimil@gmail.com",
-    createdOn: "2nd April, 2024",
-  },
-];
+import axios from "axios";
 
 const JobList = () => {
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/v1/auth/admin/job-list", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setJobs(response.data);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+        setError("Failed to fetch jobs. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
+  const deleteJob = async (id) => {
+    console.log(`Attempting to delete job with id: ${id}`);
+    try {
+      const response = await fetch(`http://localhost:8000/api/v1/auth/admin/job/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      if (response.ok) {
+        setJobs(jobs.filter((job) => job._id !== id));
+        console.log(`Job with id: ${id} deleted successfully`);
+      } else {
+        console.error("Failed to delete job");
+      }
+    } catch (error) {
+      console.error("Error deleting job:", error);
+      setError("Failed to delete job. Please try again later.");
+    }
+  };
+
+  const filteredJobs = jobs.filter((job) =>
+    job.jobTitle.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <AdminHeader />
       <section className="container candList jobList">
         <h2 className="title textPrimary">Job List</h2>
+        {error && <p className="error">{error}</p>}
         <div className="candSearch dFlex">
           <span className="rounded-6 dFlex justifyCenter alignCenter">
-            <i class="fa-solid fa-magnifying-glass textPrimary"></i>
+            <i className="fa-solid fa-magnifying-glass textPrimary"></i>
           </span>
-          <input type="text" placeholder="Search..." className="formControl" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="formControl"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
         <div className="candDataTable">
           <table
@@ -60,24 +94,27 @@ const JobList = () => {
               </tr>
             </thead>
             <tbody>
-              {jobList.map((jobs) => (
-                <tr key={jobs.id}>
-                  <td>{jobs.jobTitle}</td>
+              {filteredJobs.map((job) => (
+                <tr key={job._id}>
+                  <td>{job.jobTitle}</td>
                   <td>
-                    <img src={jobs.logo} alt={`${jobs.name} logo`} />
+                    <img src={job.logo} alt={`${job.employerName} logo`} />
                   </td>
                   <td>
-                    <span className="dBlock textPrimary fwBold">
-                      {jobs.name}
-                    </span>
-                    {jobs.email}
+                    <span className="dBlock textPrimary fwBold">{job.employerName}</span>
+                    {job.employerEmail}
                   </td>
                   <td>
-                    <span className="createdOn">{jobs.createdOn}</span>
+                    <span className="createdOn">{job.createdAt}</span>
                   </td>
                   <td>
-                    <i class="fa-solid fa-pen-to-square textPrimary editIcon"></i>
-                    <i class="fa-solid fa-trash-can textDanger"></i>
+                    <i className="fa-solid fa-pen-to-square textPrimary editIcon"
+                    ></i>
+                    <i
+                      className="fa-solid fa-trash-can textDanger"
+                      onClick={() => deleteJob(job._id)}
+                      style={{ cursor: "pointer" }}
+                    ></i>
                   </td>
                 </tr>
               ))}

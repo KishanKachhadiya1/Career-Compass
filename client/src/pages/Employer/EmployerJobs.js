@@ -1,28 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/employerjobs.css";
 import "../../styles/candidatesavedjobs.css";
 import EmployerHeader from "../../components/EmployerHeader";
 import { Link } from "react-router-dom";
 
-const employerJobList = [
-  {
-    id: 1,
-    jobTitle: "Web Designer",
-    createdOn: "19th May, 2024",
-  },
-  {
-    id: 2,
-    jobTitle: "MERN stack Developer",
-    createdOn: "24th June, 2024",
-  },
-  {
-    id: 3,
-    jobTitle: "Graphic Designer",
-    createdOn: "2nd April, 2024",
-  },
-];
-
 const EmployerJobs = () => {
+  const [employerJobList, setEmployerJobList] = useState([]);
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/api/v1/auth/employer/employer-jobs", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch jobs");
+        }
+
+        const jobs = await response.json();
+        setEmployerJobList(jobs);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
   return (
     <>
       <EmployerHeader />
@@ -31,7 +38,7 @@ const EmployerJobs = () => {
         <div className="dFlex alignCenter justifyBetween">
           <div className="candSearch dFlex w-100 gridSearch">
             <span className="rounded-6 dFlex justifyCenter alignCenter">
-              <i class="fa-solid fa-magnifying-glass textPrimary"></i>
+              <i className="fa-solid fa-magnifying-glass textPrimary"></i>
             </span>
             <input
               type="text"
@@ -65,13 +72,13 @@ const EmployerJobs = () => {
                 <tr key={empJob.id}>
                   <td>{empJob.jobTitle}</td>
                   <td>
-                    <span className="createdOn">{empJob.createdOn}</span>
+                    <span className="createdOn">{empJob.createdAt}</span>
                   </td>
                   <td>
-                    <Link to="/employer/employer-jobs/edit">
-                      <i class="fa-solid fa-pen-to-square textPrimary editIcon"></i>
+                    <Link to={`/employer/employer-jobs/edit/${empJob.id}`}>
+                      <i className="fa-solid fa-pen-to-square textPrimary editIcon"></i>
                     </Link>
-                    <i class="fa-solid fa-trash-can textDanger"></i>
+                    <i className="fa-solid fa-trash-can textDanger"></i>
                   </td>
                 </tr>
               ))}

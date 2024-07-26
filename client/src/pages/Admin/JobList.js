@@ -30,24 +30,20 @@ const JobList = () => {
   }, []);
 
   const deleteJob = async (id) => {
-    console.log(`Attempting to delete job with id: ${id}`);
     try {
-      const response = await fetch(`http://localhost:8000/api/v1/auth/admin/job/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-
+      const response = await fetch(
+        `http://localhost:8000/api/v1/auth/admin/job-list/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (response.ok) {
         setJobs(jobs.filter((job) => job._id !== id));
-        console.log(`Job with id: ${id} deleted successfully`);
       } else {
-        console.error("Failed to delete job");
+        console.error("Failed to delete employer");
       }
     } catch (error) {
-      console.error("Error deleting job:", error);
-      setError("Failed to delete job. Please try again later.");
+      console.error("Error deleting employer:", error);
     }
   };
 
@@ -108,13 +104,10 @@ const JobList = () => {
                     <span className="createdOn">{job.createdAt}</span>
                   </td>
                   <td>
-                    <i className="fa-solid fa-pen-to-square textPrimary editIcon"
-                    ></i>
-                    <i
-                      className="fa-solid fa-trash-can textDanger"
-                      onClick={() => deleteJob(job._id)}
-                      style={{ cursor: "pointer" }}
-                    ></i>
+                    <i className="fa-solid fa-pen-to-square textPrimary editIcon"></i>
+                    <span onClick={() => deleteJob(job._id)} className="cursorPointer">
+                      <i className="fa-solid fa-trash-can textDanger"></i>
+                    </span>
                   </td>
                 </tr>
               ))}

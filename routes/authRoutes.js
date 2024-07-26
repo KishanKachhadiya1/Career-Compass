@@ -14,7 +14,7 @@ import {
   getEmployerProfiles,
   deleteEmployerProfile,
 } from "../controllers/EmployerProfileController.js";
-import { createJob, getLatestJobs, getAllJobs,getJobProfiles,deleteJob } from "../controllers/JobController.js";
+import { createJob, getLatestJobs, getAllJobs,getJobProfiles,deleteJobsProfile } from "../controllers/JobController.js";
 import {
   getCounts,
   employerdashboard,
@@ -40,6 +40,8 @@ router.put("/employer-edit-profile",updateEmployerProfile);
 router.get("/latest-jobs", getLatestJobs);
 router.get("/employer/employer-jobs",getAllJobs)
 router.get("/admin/job-list",getJobProfiles);
-router.delete('/admin/job-list/:id', deleteJob);
+router.delete('/admin/job-list/:id', deleteJobsProfile);
+router.delete('/employer/employer-jobs/:id', deleteJobsProfile);
+
 
 export default router;

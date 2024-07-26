@@ -175,17 +175,6 @@ const EmployerAddJobs = () => {
                     />
                     <label className="radioLabel">Female</label>
                   </div>
-                  <div className="radioGroup dFlex alignCenter">
-                    <input
-                      type="radio"
-                      className="radioInput"
-                      name="gender"
-                      value="both"
-                      checked={formData.gender === "both"}
-                      onChange={handleChange}
-                    />
-                    <label className="radioLabel">Both</label>
-                  </div>
                 </div>
               </div>
               <div className="formGroup">

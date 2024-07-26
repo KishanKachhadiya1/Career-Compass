@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 
 const EmployerJobs = () => {
   const [employerJobList, setEmployerJobList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -22,13 +25,34 @@ const EmployerJobs = () => {
 
         const jobs = await response.json();
         setEmployerJobList(jobs);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching jobs:", error);
+        setError("Failed to fetch jobs");
+        setLoading(false);
       }
     };
 
     fetchJobs();
   }, []);
+
+  const deleteJob = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/v1/auth/employer/employer-jobs/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.ok) {
+        setEmployerJobList(employerJobList.filter((job) => job._id !== id));
+      } else {
+        console.error("Failed to delete job");
+      }
+    } catch (error) {
+      console.error("Error deleting job:", error);
+    }
+  };
 
   return (
     <>
@@ -44,6 +68,8 @@ const EmployerJobs = () => {
               type="text"
               placeholder="Search saved jobs..."
               className="formControl"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
           <Link
@@ -69,16 +95,16 @@ const EmployerJobs = () => {
             </thead>
             <tbody>
               {employerJobList.map((empJob) => (
-                <tr key={empJob.id}>
+                <tr key={empJob._id}>
                   <td>{empJob.jobTitle}</td>
                   <td>
-                    <span className="createdOn">{empJob.createdAt}</span>
+                    <span className="createdOn">{new Date(empJob.createdAt).toLocaleDateString()}</span>
                   </td>
                   <td>
-                    <Link to={`/employer/employer-jobs/edit/${empJob.id}`}>
-                      <i className="fa-solid fa-pen-to-square textPrimary editIcon"></i>
-                    </Link>
-                    <i className="fa-solid fa-trash-can textDanger"></i>
+                    <i className="fa-solid fa-pen-to-square textPrimary editIcon"></i>
+                    <span onClick={() => deleteJob(empJob._id)} className="cursorPointer">
+                      <i className="fa-solid fa-trash-can textDanger"></i>
+                    </span>
                   </td>
                 </tr>
               ))}

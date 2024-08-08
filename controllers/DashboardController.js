@@ -2,6 +2,8 @@ import JobProfile from '../models/JobsModel.js';
 import EmployerProfile from '../models/EmployerModel.js';
 import CandidateProfile from '../models/CandidateModel.js';
 import User from '../models/User.js';
+import ContactForm from "../models/ContactForm.js";
+
 
 
 export const getCounts = async (req, res) => {
@@ -39,5 +41,22 @@ export const employerdashboard = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+
+export const submitContactForm = async (req, res) => {
+  try {
+    const { fullName, email, phoneNumber, message } = req.body;
+    const newContactForm = new ContactForm({
+      fullName,
+      email,
+      phoneNumber,
+      message,
+    });
+    await newContactForm.save();
+    res.status(201).json({ message: "Form submitted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to submit form" });
   }
 };

@@ -20,6 +20,9 @@ import {
   employerdashboard,
 } from "../controllers/DashboardController.js";
 
+import { submitContactForm } from "../controllers/DashboardController.js";
+
+
 const router = express.Router();
 
 router.post("/register", register);
@@ -42,6 +45,7 @@ router.get("/employer/employer-jobs",getAllJobs)
 router.get("/admin/job-list",getJobProfiles);
 router.delete('/admin/job-list/:id', deleteJobsProfile);
 router.delete('/employer/employer-jobs/:id', deleteJobsProfile);
+router.post("/contact-us", submitContactForm);
 
 
 export default router;

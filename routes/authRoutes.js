@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import { register, login } from "../controllers/authController.js";
 import {
   saveCandidateProfile,
@@ -46,6 +46,10 @@ router.get("/admin/job-list",getJobProfiles);
 router.delete('/admin/job-list/:id', deleteJobsProfile);
 router.delete('/employer/employer-jobs/:id', deleteJobsProfile);
 router.post("/contact-us", submitContactForm);
+
+router.get("/latest-jobs", getAllJobs);
+
+
 
 
 export default router;
